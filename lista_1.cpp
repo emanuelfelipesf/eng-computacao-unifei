@@ -634,7 +634,7 @@ void questao27(){
 // c) o imposto equivale a 3% do salário bruto;
 // d) o salário a receber equivale ao salário bruto menos o imposto.
 void questao28(){
-    float horas, s_min, hora_valor, s_bruto, imposto, s_receber, imposto = 0.03;
+    float horas, s_min, hora_valor, s_bruto, imposto, s_receber, imposto_prc = 0.03;
     while (true)
     {
         cout << "Digite numero de horas trabalhadas: ";
@@ -649,7 +649,7 @@ void questao28(){
         {
             hora_valor = s_min / 2;
             s_bruto = horas * hora_valor;
-            imposto = s_bruto * imposto;
+            imposto = s_bruto * imposto_prc;
             s_receber = s_bruto - imposto;
             cout << "Salario bruto: R$ " << s_bruto << endl;
             cout << "Imposto (3%): R$ " << imposto << endl;
