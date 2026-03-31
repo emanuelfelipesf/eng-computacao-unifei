@@ -227,8 +227,10 @@ void questao8()
     float altura;
     int escolha;
 
-    cout << "Digite a sua altura: "; cin >> altura;
-    cout << "Digite o seu sexo: \n[1] Masculino \n[2] Feminino \n"; cin >> escolha;
+    cout << "Digite a sua altura: ";
+    cin >> altura;
+    cout << "Digite o seu sexo: \n[1] Masculino \n[2] Feminino \n";
+    cin >> escolha;
 
     if (altura > 0)
     {
@@ -258,8 +260,10 @@ void questao9()
     float salario;
 
     cout << "Digite seu codigo correspondente ao seu cargo";
-    cout << "[1] Escrituario \n[2] Secretario \n[3] Caixa \n[4] Gerente \n[5] Diretor \nCodigo: "; cin >> codigo;
-    cout << "Digite seu salario: "; cin >> salario;
+    cout << "[1] Escrituario \n[2] Secretario \n[3] Caixa \n[4] Gerente \n[5] Diretor \nCodigo: ";
+    cin >> codigo;
+    cout << "Digite seu salario: ";
+    cin >> salario;
     switch (codigo)
     {
     case 1:
@@ -278,7 +282,7 @@ void questao9()
         cout << "Cargo: Diretor \nValor de aumento: " << salario << "\nNovo salario: " << salario;
         cout << "Voce nao tem direito ao aumento.";
         break;
-    
+
     default:
         cout << "Codigo invalido!";
         break;
@@ -291,7 +295,8 @@ void questao10()
 {
     float salario;
 
-    cout << "Digite seu salario: "; cin >> salario;
+    cout << "Digite seu salario: ";
+    cin >> salario;
     if (salario >= 5000)
     {
         cout << "Bem remunerado";
@@ -300,7 +305,6 @@ void questao10()
     {
         cout << "Mal remunerado";
     }
-    
 }
 
 // 11. Uma família brasileira possui cinco pessoas que trabalham fora e ajudam nos gastos domésticos. Faça
@@ -313,7 +317,8 @@ void questao11()
 
     for (size_t i = 0; i < 4; i++)
     {
-        cout << "Digite o salario da pessoa " << i+1 << " da familia: "; cin >> salario;
+        cout << "Digite o salario da pessoa " << i + 1 << " da familia: ";
+        cin >> salario;
         if (salario > 1621)
         {
             contador++;
@@ -328,7 +333,8 @@ void questao12()
 {
     int mes;
 
-    cout << "Digite o numero do mes: "; cin >> mes;
+    cout << "Digite o numero do mes: ";
+    cin >> mes;
     switch (mes)
     {
     case 1:
@@ -367,7 +373,7 @@ void questao12()
     case 12:
         cout << "Dezembro";
         break;
-    
+
     default:
         cout << "Mes invalido!";
         break;
@@ -382,13 +388,16 @@ void questao13()
     float a, b, c, delta, x1, x2;
 
     cout << "Digite os coeficientes";
-    cout << "a: "; cin >> a;
-    cout << "b: "; cin >> b;
-    cout << "c: "; cin >> c;
+    cout << "a: ";
+    cin >> a;
+    cout << "b: ";
+    cin >> b;
+    cout << "c: ";
+    cin >> c;
 
     delta = pow(b, 2) - 4 * a * c;
-    x1 = ((b * -1) + sqrt(delta))/2 * a;
-    x2 = ((b * -1) - sqrt(delta))/2 * a;
+    x1 = ((b * -1) + sqrt(delta)) / 2 * a;
+    x2 = ((b * -1) - sqrt(delta)) / 2 * a;
 
     cout << "As raizes da equacao e: " << x1 << " e " << x2;
 }
@@ -397,10 +406,27 @@ void questao13()
 // mesa para verificar o resultado.
 void questao14()
 {
-    
+    int a, b, c;
+    cout << "Digite 3 numeros inteiros: ";
+    cin >> a >> b >> c;
+
+    if (a > b)
+    {
+        swap(a, b);
+    }
+    if (a > c)
+    {
+        swap(a, c);
+    }
+    if (b > c)
+    {
+        swap(b, c);
+    }
+
+    cout << "Em ordem crescente: " << a << ", " << b << ", " << c;
 }
 
-// 15. A nota final de uma disciplina é calculada a partir de três notas atribu´ıdas, respectivamente, a uma
+// 15. A nota final de uma disciplina é calculada a partir de três notas atribuídas, respectivamente, a uma
 // avaliação teórica, a uma avaliação prática e à entrega de exercícios. A média das três notas mencionadas
 // anteriormente obedece aos pesos a seguir, respectivamente: 7, 2 e 1. Faça um programa que receba
 // as três notas, calcule e mostre a média ponderada e o conceito que segue a tabela abaixo. Aten¸c˜ao:
@@ -408,94 +434,336 @@ void questao14()
 // Faça o teste de mesa para verificar o resultado.
 void questao15()
 {
+    float n1, n2, n3, media;
+
+    cout << "Digite as tres notas do aluno (separe-os por espaço): ";
+    cin >> n1 >> n2 >> n3;
+    media = ((n1 * 7) + (n2 * 2) + (n1)) / 10;
+    cout << "A media do aluno e: " << media;
+    if (media < 50)
+    {
+        cout << "Esta no conceito E.";
+    }
+    else if (media >= 50 && media < 60)
+    {
+        cout << "Esta no conceito D";
+    }
+    else if (media >= 60 && media < 70)
+    {
+        cout << "Esta no conceito C";
+    }
+    else if (media >= 70 && media < 85)
+    {
+        cout << "Esta no conceito C";
+    }
+    else if (media >= 85 && media <= 100)
+    {
+        cout << "Esta no conceito C";
+    }
+    else
+    {
+        cout << "O aluno ficou acima da media 100";
+    }
 }
 
 // 16. Faça um programa que receba 3 números obrigatoriamente em ordem crescente e um quarto número
 // que não siga esta regra. Mostre, em seguida, os quatro números em ordem decrescente
 void questao16()
 {
+    int a, b, c, d;
+    cout << "Digite 3 numeros em ordem crescente e um quarto (separe-os por espaço): ";
+    cin >> a >> b >> c >> d;
 }
 
-// 17. Faça um programa que receba a medida de um ˆangulo em graus. Calcule e mostre o quadrante em
-// que se localiza esse ˆangulo. Considere os quadrantes da trigonometria e que os ˆangulos estão sempre
+// 17. Faça um programa que receba a medida de um ângulo em graus. Calcule e mostre o quadrante em
+// que se localiza esse ângulo. Considere os quadrantes da trigonometria e que os ângulos estão sempre
 // entre 0 e 360 graus
 void questao17()
 {
+    int angulo;
+
+    while (true)
+    {
+        cout << "Digite um angulo entre 0 - 360: ";
+        cin >> angulo;
+        if (angulo > 0 && angulo < 90)
+        {
+            cout << "O angulo esta no primeiro quadrante";
+            break;
+        }
+        else if (angulo > 90 && angulo < 180)
+        {
+            cout << "O angulo esta no segundo quadrante";
+            break;
+        }
+        else if (angulo > 180 && angulo < 270)
+        {
+            cout << "O angulo esta no  terceiro quadrante";
+            break;
+        }
+        else if (angulo > 180 && angulo < 360)
+        {
+            cout << "O angulo esta no quarto quadrante";
+            break;
+        }
+        else if (angulo == 0 || angulo == 90 || angulo == 180 || angulo == 270 || angulo == 360)
+        {
+            cout << "O angulo nao esta em um quadrante especifico por estar exatamente em um eixo";
+            break;
+        }
+        else
+        {
+            cout << "O angulo digitado e invalido! \n";
+        }
+    }
 }
 
-// 18. Faça um programa que receba um número indicando a op¸c˜ao do usuário e mais 3 números. O programa
-// deve imprimir os três números conforme a op¸c˜ao selecionada pelo usuário.
+// 18. Faça um programa que receba um número indicando a opção do usuário e mais 3 números. O programa
+// deve imprimir os três números conforme a opção selecionada pelo usuário.
 //     1. Imprima os três números em ordem crescente
 //     2. Imprima os três números em ordem decrescente
 void questao18()
 {
+    bool loop = true;
+    int op, a, b, c;
+    cout << "Digite 3 numeros (separe-os por espaço): ";
+    cin >> a >> b >> c;
+    while (loop)
+    {
+        cout << "Operacao \n[1] Imprimir os numeros em ordem crescente \n[2] Imprimir os numeros em ordem decrescente \nEscolha: ";
+        cin >> op;
+
+        switch (op)
+        {
+        case 1:
+            if (a > b)
+            {
+                swap(a, b);
+            }
+            if (a > c)
+            {
+                swap(a, c);
+            }
+            if (b > c)
+            {
+                swap(b, c);
+            }
+            cout << "Em ordem crescente: " << a << ", " << b << ", " << c;
+            break;
+
+        case 2:
+            if (a < b)
+            {
+                swap(a, b);
+            }
+            if (a < c)
+            {
+                swap(a, c);
+            }
+            if (b < c)
+            {
+                swap(b, c);
+            }
+            cout << "Em ordem decrescente: " << a << ", " << b << ", " << c;
+            break;
+
+        default:
+            cout << "Escolha invalida";
+            break;
+        }
+    }
 }
 
 // 19. Faça um programa que receba duas datas e imprima a data cronologicamente maior. Cada data deve
 // ser fornecida por três valores inteiros:
 //      1. Dia
-//      2. Mˆes
+//      2. Mês
 //      3. Ano
 void questao19()
 {
+    int d1, d2, a1, a2, m1, m2;
+
+    cout << "Data 1 (separe-os por espaço | dia mes ano): ";
+    cin >> d1 >> m1 >> a1;
+    cout << "Data 2 (separe-os por espaço | dia mes ano): ";
+    cin >> d2 >> m2 >> a2;
+
+    if (a1 > a2 || (a1 == a2 && m1 > m2) || (a1 == a2 && m1 == m2 && d1 > d2))
+    {
+        cout << "Data maior: " << d1 << "/" << m1 << "/" << a1;
+    }
+    else
+    {
+        cout << "Data maior: " << d2 << "/" << m2 << "/" << a2;
+    }
 }
 
-// 20. O IMC (´ındice de massa corporal) é um critério da Organiza¸c˜ao Mundial de Sa´ude para dar indica¸c˜ao sobre a condi¸c˜ao de peso de uma pessoa adulta. A f´ormula para c´alculo do ´ındice é: IMC =
+// 20. O IMC (índice de massa corporal) é um critério da Organização Mundial de Sa´ude para dar indicação sobre a condição de peso de uma pessoa adulta. A fómula para cálculo do índice é: IMC =
 // peso/altura2
-// . Elabore um programa que leia o peso e a altura de um adulto e mostre sua condi¸c˜ao
-// de acordo com a tabela abaixo. não se esque¸ca de verificar se o peso e altura digitados s˜ao números
+// . Elabore um programa que leia o peso e a altura de um adulto e mostre sua condição
+// de acordo com a tabela abaixo. não se esque¸ca de verificar se o peso e altura digitados são números
 // positivos.
-// IMC em Adultos   Condi¸c˜ao
+// IMC em Adultos   condição
 // Abaixo de 18,5   Abaixo do Peso
 // Entre 18,5 e 25  Peso Normal
 // Entre 25 e 30    Acima do Peso
 // Acima de 30      Obeso
 void questao20()
 {
+    float peso, altura, imc;
+    string condicao;
+    cout << "Peso (kg): ";
+    cin >> peso;
+    cout << "Altura (m): ";
+    cin >> altura;
+
+    if (peso <= 0 || altura <= 0)
+    {
+        cout << "Peso e altura devem ser positivos!";
+    }
+    else
+    {
+        imc = peso / pow(altura, 2);
+        if (imc < 18.5)
+            condicao = "Abaixo do Peso";
+        else if (imc < 25)
+            condicao = "Peso Normal";
+        else if (imc < 30)
+            condicao = "Acima do Peso";
+        else
+            condicao = "Obeso";
+
+        cout << "IMC: " << imc << " | Condicao: " << condicao;
+    }
 }
 
 // 21. Escreva um programa em C para inserir qualquer número do usuário e limpar o n-ésimo (também a
 // ser inserido pelo usuário) bit do número fornecido usando o operador bit a bit.
 void questao21()
 {
+    int num, n, resultado;
+    cout << "Numero: ";
+    cin >> num;
+    cout << "Posicao do bit a ser retirado: ";
+    cin >> n;
+
+    // Limpa o n-esimo bit: num & ~(1 << n)
+    resultado = num & (1U << n);
+    cout << "Resultado: " << resultado;
 }
 
-// 22. Efetuar o c´alculo da quantidade de litros de combust´ıvel gasta em uma viagem, utilizando um autom´ovel que faz 12 quilˆometros por litro. Para obter o c´alculo, o usuário deve fornecer o tempo gasto
-// (vari´avel TEMPO) e a velocidade média (vari´avel VELOCIDADE) durante a viagem. Desta forma,
-// ser´a poss´ıvel obter a distˆancia percorrida com a f´ormula DISTANCIA = TEMPO * VELOCIDADE. ˆ
-// A partir do valor da distˆancia, basta calcular a quantidade de combust´ıvel usando LITROS USADOS
+// 22. Efetuar o cálculo da quantidade de litros de combustível gasta em uma viagem, utilizando um automóvel que faz 12 km por litro. Para obter o cálculo, o usuário deve fornecer o tempo gasto
+// (variável TEMPO) e a velocidade média (variável VELOCIDADE) durante a viagem. Desta forma,
+// será possível obter a distância percorrida com a fómula DISTANCIA = TEMPO * VELOCIDADE. ˆ
+// A partir do valor da distância, basta calcular a quantidade de combustível usando LITROS USADOS
 // = DISTANCIA/12. O programa deve apresentar os valores da velocidade média, tempo gasto na ˆ
-// viagem, a distˆancia percorrida e a quantidade de litros utilizada na viagem.
+// viagem, a distância percorrida e a quantidade de litros utilizada na viagem.
 void questao22()
 {
+    float tempo, velocidade, distancia, litros;
+
+    cout << "Tempo da viagem (horas): ";
+    cin >> tempo;
+    cout << "Velocidade media (km/h): ";
+    cin >> velocidade;
+
+    distancia = tempo * velocidade;
+    litros = distancia / 12.0;
+
+    cout << "Velocidade media: " << velocidade << " km/h";
+    cout << "Tempo gasto: " << tempo << " horas";
+    cout << "Distancia percorrida: " << distancia << " km";
+    cout << "Litros utilizados: " << litros;
 }
 
-// 23. Efetuar a leitura de dois valores numéricos inteiros representados pelas vari´aveis A e B e apresentar o
-// resultado da diferen¸ca do maior valor pelo menor valor.
+// 23. Efetuar a leitura de dois valores numéricos inteiros representados pelas variáveis A e B e apresentar o
+// resultado da diferença do maior valor pelo menor valor.
 void questao23()
 {
+    int n1, n2;
+    cout << "Digite dois numeros inteiros (separe-os por espaço): ";
+    cin >> n1 >> n2;
+
+    if (n1 > n2)
+    {
+        cout << "Diferenca maior - menor: " << n1 - n2;
+    }
+    else
+    {
+        cout << "Diferenca maior - menor: " << n2 - n1;
+    }
 }
 
 // 24. Elabore um programa para calcular a nota de um aluno. Para isso, leia três valores referentes a 3
-// avalia¸c˜oes escolares do aluno e imprima uma mensagem dizendo que o aluno foi aprovado, se o valor
+// avaliações escolares do aluno e imprima uma mensagem dizendo que o aluno foi aprovado, se o valor
 // da média escolar for maior ou igual a 6. Se o valor da média for menor que 6, solicite a nota da
-// recupera¸c˜ao paralela. O programa deve pegar a nota da recupera¸c˜ao paralela mais a média calculada
+// recuperação paralela. O programa deve pegar a nota da recuperação paralela mais a média calculada
 // anteriormente e gerar uma nova média. Se a nova média for maior ou igual a 6, apresentar uma
-// mensagem dizendo que o aluno foi aprovado na recupera¸c˜ao paralela. Se o aluno não foi aprovado,
+// mensagem dizendo que o aluno foi aprovado na recuperação paralela. Se o aluno não foi aprovado,
 // indicar uma mensagem informando que ele foi reprovado. Apresentar junto com as mensagens o valor
-// da média do aluno, para qualquer condi¸c˜ao.
+// da média do aluno, para qualquer condição.
 void questao24()
 {
+    float n1, n2, n3, media, rec, nova_media;
+    cout << "Digite as tres notas do aluno (separe-os por espaço): ";
+    cin >> n1 >> n2 >> n3;
+
+    media = (n1 + n2 + n3) / 3;
+
+    cout << "Media: " << media;
+    if (media >= 6)
+    {
+        cout << "Aprovado com media " << media;
+    }
+    else
+    {
+        cout << "Nota recuperacao: ";
+        cin >> rec;
+
+        nova_media = (media + rec) / 2;
+
+        cout << "Nova media: " << nova_media;
+        if (nova_media >= 6)
+        {
+            cout << "Aprovado na recuperacao com media " << nova_media;
+        }
+        else
+        {
+            cout << "Reprovado com media " << nova_media;
+        }
+    }
 }
 
-// 25. Elabore um algoritmo que, para uma entrada do salário bruto, calcule e apresente a contribui¸c˜ao ao
-// INSS e o salário l´ıquido restante. A contribui¸c˜ao para o INSS é calculada da seguinte forma:
+// 25. Elabore um algoritmo que, para uma entrada do salário bruto, calcule e apresente a contribuição ao
+// INSS e o salário líquido restante. A contribuição para o INSS é calculada da seguinte forma:
 // 1. salário bruto até três salários mínimos - 8%
 // 2. salário bruto acima de três salários mínimos - 10%
-// 3. Para as contribui¸c˜oes que seriam maiores que o salário mínimo, a importˆancia é de um salário
+// 3. Para as contribuições que seriam maiores que o salário mínimo, a importância é de um salário
 // mínimo.
 void questao25()
 {
+    float s_bruto, s_minimo = 1412.0, s_liquido;
+    float contribuicao;
+
+    cout << "Salario bruto: ";
+    cin >> s_bruto;
+
+    if (s_bruto <= 3 * s_minimo)
+    {
+        contribuicao = s_bruto * 0.08;
+    }
+    else
+    {
+        contribuicao = s_bruto * 0.10;
+    }
+
+    if (contribuicao > s_minimo)
+        contribuicao = s_minimo;
+
+    s_liquido = s_bruto - contribuicao;
+
+    cout << "Contribuicao INSS: RS " << contribuicao;
+    cout << "Salario liquido: RS " << s_liquido;
 }
 
 // 26. Implemente um programa usando switch que leia um número de 1 a 7 e informe o dia da semana
@@ -503,20 +771,95 @@ void questao25()
 // é mostrado uma mensagem de erro
 void questao26()
 {
+    int dia;
+    cout << "Dia da semana (1-7, 1=Domingo): ";
+    cin >> dia;
+
+    switch (dia)
+    {
+    case 1:
+        cout << "Domingo";
+        break;
+    case 2:
+        cout << "Segunda-feira";
+        break;
+    case 3:
+        cout << "Terca-feira";
+        break;
+    case 4:
+        cout << "Quarta-feira";
+        break;
+    case 5:
+        cout << "Quinta-feira";
+        break;
+    case 6:
+        cout << "Sexta-feira";
+        break;
+    case 7:
+        cout << "Sabado";
+        break;
+    default:
+        cout << "Dia invalido!";
+    }
 }
 
 // 27. Implemente um programa usando switch para ler um número de 1 a 12 e informar o trimestre correspondente, sendo Jan/Fev/Mar o 1 trimestre. Se for um número incorreto, mostrar mensagem de
 // erro.
 void questao27()
 {
+    int mes;
+    cout << "Mes (1-12): ";
+    cin >> mes;
+
+    switch (mes)
+    {
+    case 1:
+    case 2:
+    case 3:
+        cout << "1o Trimestre";
+        break;
+    case 4:
+    case 5:
+    case 6:
+        cout << "2o Trimestre";
+        break;
+    case 7:
+    case 8:
+    case 9:
+        cout << "3o Trimestre";
+        break;
+    case 10:
+    case 11:
+    case 12:
+        cout << "4o Trimestre";
+        break;
+    default:
+        cout << "Mes invalido!";
+    }
 }
 
 // 28. Considere a seguinte equação: W=2T+4Y-3X, na qual X=2T-4 e Y=T/2+4. Faça um programa que
-// pe¸ca ao usuário um valor para T, calcule e mostre na tela o valor de W. Observa¸c˜ao: O valor de T deve
-// ser maior que 2 e menor ou igual à 100; caso contr´ario, deve ser mostrada uma mensagem informando
-// que o valor digitado é inv´alido e o c´alculo não é executado.
+// peça ao usuário um valor para T, calcule e mostre na tela o valor de W. Observação: O valor de T deve
+// ser maior que 2 e menor ou igual à 100; caso contrário, deve ser mostrada uma mensagem informando
+// que o valor digitado é inv´alido e o cálculo não é executado.
 void questao28()
 {
+    float t, x, y, w;
+    cout << "Valor de T: ";
+    cin >> t;
+
+    if (t <= 2 || t > 100)
+    {
+        cout << "T invalido! Deve ser >2 e <=100";
+    }
+    else
+    {
+        x = (2 * t) - 4;
+        y = t / (2 + 4);
+        w = 2 * t + 4 * y - 3 * x;
+
+        cout << "W = " << w;
+    }
 }
 
 // 29. Escreva um programa que receba 5 notas de um aluno (todas de 0 a 20) e em função da soma destas
@@ -529,22 +872,77 @@ void questao28()
 // continua a execu¸c˜ao.
 void questao29()
 {
+    float notas[5];
+    float total = 0.0f;
+    bool valido = true;
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "Nota " << i + 1 << " (0-20): ";
+        cin >> notas[i];
+        if (notas[i] < 0 || notas[i] > 20)
+        {
+            cout << "Nota invalida! Deve ser entre 0 e 20.";
+            valido = false;
+            break;
+        }
+        total += notas[i];
+        total = (int)total;
+    }
+
+    if (!valido)
+        return;
+
+    if (total >= 70)
+        cout << "Aprovado";
+    else if (total >= 30)
+        cout << "Exame";
+    else
+        cout << "Reprovado";
+
+    cout << "Soma total: " << (int)total;
 }
 
-// 30. Faça um programa que receba a medida de um ˆangulo em graus, calcule e mostre para o usuário
-// em qual quadrante esse ˆangulo se localiza. Observa¸c˜ao: Angulos menores que 00 e maiores que 3600 ˆ
-// também s˜ao medidas de ˆangulos v´alidas. Exemplos:
+// 30. Faça um programa que receba a medida de um ângulo em graus, calcule e mostre para o usuário
+// em qual quadrante esse ângulo se localiza. Observa¸c˜ao: Angulos menores que 00 e maiores que 3600 ˆ
+// também são medidas de ângulos v´alidas. Exemplos:
 // 198 - “Angulo se localiza no 3 ˆ º quadrante”
 // 435 - “Angulo se localiza no 1 ˆ º quadrante”
 // -215 - “Angulo se localiza no 2 ˆ º quadrante”
 void questao30()
 {
+    float angulo;
+    cout << "Angulo (graus): ";
+    cin >> angulo;
+
+    // Normaliza para 0-360
+    while (angulo < 0)
+        angulo += 360;
+    while (angulo >= 360)
+        angulo -= 360;
+
+    if (angulo >= 0 && angulo < 90)
+        cout << "1o quadrante";
+    else if (angulo < 180)
+        cout << "2o quadrante";
+    else if (angulo < 270)
+        cout << "3o quadrante";
+    else
+        cout << "4o quadrante";
 }
 
-// 31. Escreva um programa em C para inserir qualquer número do usuário e encontrar o bit de menor ordem
+// 31. Escreva um programa em C++ para inserir qualquer número do usuário e encontrar o bit de menor ordem
 // do número fornecido usando o operador bit a bit.
 void questao31()
 {
+    unsigned int num;
+    cout << "Numero: ";
+    cin >> num;
+
+    // Least significant set bit: num & -num
+    unsigned int lsb = num & -num;
+
+    cout << "Bit de menor ordem: " << lsb << " (hex: " << hex << lsb << ")";
 }
 
 int main()
