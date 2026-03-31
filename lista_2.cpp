@@ -48,7 +48,7 @@ void questao3()
     float n1, n2;
     int escolha;
 
-    cout << "Digite dois números (separe-os por espaço | para números com decimais use ponto): ";
+    cout << "Digite dois números (separe-os por espaco | para números com decimais use ponto): ";
     cin >> n1 >> n2;
     cout << "Qual operação você deseja fazer com estes números?";
     cout << "[1] Média entre os números digitados \n[2] Diferença do maior pelo menor \n[3] Produto entre os números digitados \n[4] Divisão do primeiro pelo segundo";
@@ -140,7 +140,7 @@ void questao5()
     else if (salario > 300 && salario <= 400)
     {
         cout << "Seu credito especial e: " << salario * 0.3;
-        cout << "Salario final: " << salario 1.3;
+        cout << "Salario final: " << salario * 1.3;
     }
     else
     {
@@ -327,8 +327,8 @@ void questao11()
     cout << contador << "ganham mais que o salario minimo";
 }
 
-// 12. Faça um programa que, a partir de um mˆes fornecido (número inteiro de 1 a 12), apresente o nome
-// dele por extenso ou uma mensagem de mˆes inv´alido. Faça o teste de mesa para verificar o resultado.
+// 12. Faça um programa que, a partir de um mês fornecido (número inteiro de 1 a 12), apresente o nome
+// dele por extenso ou uma mensagem de mˆes inválido. Faça o teste de mesa para verificar o resultado.
 void questao12()
 {
     int mes;
@@ -407,7 +407,7 @@ void questao13()
 void questao14()
 {
     int a, b, c;
-    cout << "Digite 3 numeros inteiros: ";
+    cout << "Digite 3 numeros inteiros (separe-os por espaco): ";
     cin >> a >> b >> c;
 
     if (a > b)
@@ -436,7 +436,7 @@ void questao15()
 {
     float n1, n2, n3, media;
 
-    cout << "Digite as tres notas do aluno (separe-os por espaço): ";
+    cout << "Digite as tres notas do aluno (separe-os por espaco): ";
     cin >> n1 >> n2 >> n3;
     media = ((n1 * 7) + (n2 * 2) + (n1)) / 10;
     cout << "A media do aluno e: " << media;
@@ -454,11 +454,11 @@ void questao15()
     }
     else if (media >= 70 && media < 85)
     {
-        cout << "Esta no conceito C";
+        cout << "Esta no conceito B";
     }
     else if (media >= 85 && media <= 100)
     {
-        cout << "Esta no conceito C";
+        cout << "Esta no conceito A";
     }
     else
     {
@@ -471,8 +471,59 @@ void questao15()
 void questao16()
 {
     int a, b, c, d;
-    cout << "Digite 3 numeros em ordem crescente e um quarto (separe-os por espaço): ";
+    cout << "Digite tres numeros em ordem crescente e um quarto que nao siga a regra (separe-os por espaco): ";
     cin >> a >> b >> c >> d;
+
+    while (true)
+    {
+        if (a > b)
+        {
+            cout << "O primeiro valor nao segue a regra";
+            return;
+        }
+        else if (b > c)
+        {
+            cout << "O segundo valor nao segue a regra";
+            return;
+        }
+        else if (d > c){
+            cout << "O quarto termo nao pode seguir a regra";
+            return;
+        }
+        else
+        {
+            if (a < b)
+            {
+                swap(a, b);
+            }
+            if (a < c)
+            {
+                swap(a, c);
+            }
+            if (a < d)
+            {
+                swap(a, d);
+            }
+            if (b < c)
+            {
+                swap(b, c);
+            }
+            if (b < d)
+            {
+                swap(b, d);
+            }
+            if (c < d)
+            {
+                swap(c, d);
+            }
+            cout << "Em ordem decrescente: " << a << ", " << b << ", " << c << ", " << d;
+            break;
+            break;
+        }
+        
+        
+    }
+    
 }
 
 // 17. Faça um programa que receba a medida de um ângulo em graus. Calcule e mostre o quadrante em
@@ -526,11 +577,11 @@ void questao18()
 {
     bool loop = true;
     int op, a, b, c;
-    cout << "Digite 3 numeros (separe-os por espaço): ";
+    cout << "Digite 3 numeros (separe-os por espaco): ";
     cin >> a >> b >> c;
     while (loop)
     {
-        cout << "Operacao \n[1] Imprimir os numeros em ordem crescente \n[2] Imprimir os numeros em ordem decrescente \nEscolha: ";
+        cout << "Operacao: \n[1] Imprimir os numeros em ordem crescente \n[2] Imprimir os numeros em ordem decrescente \nEscolha: ";
         cin >> op;
 
         switch (op)
@@ -571,6 +622,7 @@ void questao18()
             cout << "Escolha invalida";
             break;
         }
+        loop = false;
     }
 }
 
@@ -583,9 +635,9 @@ void questao19()
 {
     int d1, d2, a1, a2, m1, m2;
 
-    cout << "Data 1 (separe-os por espaço | dia mes ano): ";
+    cout << "Data 1 (separe-os por espaco | dia mes ano): ";
     cin >> d1 >> m1 >> a1;
-    cout << "Data 2 (separe-os por espaço | dia mes ano): ";
+    cout << "Data 2 (separe-os por espaco | dia mes ano): ";
     cin >> d2 >> m2 >> a2;
 
     if (a1 > a2 || (a1 == a2 && m1 > m2) || (a1 == a2 && m1 == m2 && d1 > d2))
@@ -612,9 +664,9 @@ void questao20()
 {
     float peso, altura, imc;
     string condicao;
-    cout << "Peso (kg): ";
+    cout << "Peso (em kg): ";
     cin >> peso;
-    cout << "Altura (m): ";
+    cout << "Altura (em m): ";
     cin >> altura;
 
     if (peso <= 0 || altura <= 0)
@@ -647,8 +699,7 @@ void questao21()
     cout << "Posicao do bit a ser retirado: ";
     cin >> n;
 
-    // Limpa o n-esimo bit: num & ~(1 << n)
-    resultado = num & (1U << n);
+    resultado = num & ~(1U << n);
     cout << "Resultado: " << resultado;
 }
 
@@ -681,7 +732,7 @@ void questao22()
 void questao23()
 {
     int n1, n2;
-    cout << "Digite dois numeros inteiros (separe-os por espaço): ";
+    cout << "Digite dois numeros inteiros (separe-os por espaco): ";
     cin >> n1 >> n2;
 
     if (n1 > n2)
@@ -705,7 +756,7 @@ void questao23()
 void questao24()
 {
     float n1, n2, n3, media, rec, nova_media;
-    cout << "Digite as tres notas do aluno (separe-os por espaço): ";
+    cout << "Digite as tres notas do aluno (separe-os por espaco): ";
     cin >> n1 >> n2 >> n3;
 
     media = (n1 + n2 + n3) / 3;
@@ -742,8 +793,7 @@ void questao24()
 // mínimo.
 void questao25()
 {
-    float s_bruto, s_minimo = 1412.0, s_liquido;
-    float contribuicao;
+    float s_bruto, s_minimo = 1412.0, s_liquido, contribuicao;
 
     cout << "Salario bruto: ";
     cin >> s_bruto;
@@ -841,16 +891,16 @@ void questao27()
 // 28. Considere a seguinte equação: W=2T+4Y-3X, na qual X=2T-4 e Y=T/2+4. Faça um programa que
 // peça ao usuário um valor para T, calcule e mostre na tela o valor de W. Observação: O valor de T deve
 // ser maior que 2 e menor ou igual à 100; caso contrário, deve ser mostrada uma mensagem informando
-// que o valor digitado é inv´alido e o cálculo não é executado.
+// que o valor digitado é inválido e o cálculo não é executado.
 void questao28()
 {
     float t, x, y, w;
-    cout << "Valor de T: ";
+    cout << "Valor de T (2 < T < 100): ";
     cin >> t;
 
     if (t <= 2 || t > 100)
     {
-        cout << "T invalido! Deve ser >2 e <=100";
+        cout << "Valor invalido!";
     }
     else
     {
@@ -863,86 +913,87 @@ void questao28()
 }
 
 // 29. Escreva um programa que receba 5 notas de um aluno (todas de 0 a 20) e em função da soma destas
-// notas determine se este aluno est´a:
+// notas determine se este aluno está:
 // • Aprovado (a partir de 70 pontos);
 // • Exame (de 30 a 69 pontos);
 // • Reprovado (abaixo de 30 pontos).
-// Observa¸c˜ao: Seu programa deve validar os valores, ou seja, caso o usuário digite um valor de nota
-// inv´alido (abaixo de 0 ou acima de 20), uma mensagem dever´a ser exibida ao usuário e o programa não
-// continua a execu¸c˜ao.
+// Observação: Seu programa deve validar os valores, ou seja, caso o usuário digite um valor de nota
+// inválido (abaixo de 0 ou acima de 20), uma mensagem deverá ser exibida ao usuário e o programa não
+// continua a execução.
 void questao29()
 {
-    float notas[5];
-    float total = 0.0f;
-    bool valido = true;
+    float notas[5], total;
 
-    for (int i = 0; i < 5; i++)
+    cout << "Digite as 5 notas do aluno\nAs notas devem ser todas de 0 a 20";
+    for (size_t i = 0; i < 5; i++)
     {
-        cout << "Nota " << i + 1 << " (0-20): ";
+        cout << "\nNota " << i + 1 << " do aluno: ";
         cin >> notas[i];
-        if (notas[i] < 0 || notas[i] > 20)
+        if (notas[i] > 20 || notas[i] < 0)
         {
-            cout << "Nota invalida! Deve ser entre 0 e 20.";
-            valido = false;
-            break;
+            cout << "Nota invalida! Encerrando...";
+            return;
         }
-        total += notas[i];
-        total = (int)total;
+        else
+        {
+            total += notas[i];
+        }
     }
-
-    if (!valido)
-        return;
-
     if (total >= 70)
-        cout << "Aprovado";
-    else if (total >= 30)
-        cout << "Exame";
+    {
+        cout << "O aluno esta aprovado! \nNota total: " << total;
+    }
+    else if (total >= 30 && total < 70)
+    {
+        cout << "O aluno esta de exame! \nNota total: " << total;
+    }
     else
-        cout << "Reprovado";
-
-    cout << "Soma total: " << (int)total;
+    {
+        cout << "O aluno esta reprovado! \nNota total: " << total;
+    }
 }
 
 // 30. Faça um programa que receba a medida de um ângulo em graus, calcule e mostre para o usuário
-// em qual quadrante esse ângulo se localiza. Observa¸c˜ao: Angulos menores que 00 e maiores que 3600 ˆ
-// também são medidas de ângulos v´alidas. Exemplos:
-// 198 - “Angulo se localiza no 3 ˆ º quadrante”
-// 435 - “Angulo se localiza no 1 ˆ º quadrante”
-// -215 - “Angulo se localiza no 2 ˆ º quadrante”
+// em qual quadrante esse ângulo se localiza. Observação: Angulos menores que 00 e maiores que 3600 ˆ
+// também são medidas de ângulos válidas. Exemplos:
+// 198 - "Angulo se localiza no 3 ˆ º quadrante"
+// 435 - "Angulo se localiza no 1 ˆ º quadrante"
+// -215 - "Angulo se localiza no 2 ˆ º quadrante"
 void questao30()
 {
     float angulo;
-    cout << "Angulo (graus): ";
+
+    cout << "Digite o angulo (em graus): ";
     cin >> angulo;
 
-    // Normaliza para 0-360
     while (angulo < 0)
         angulo += 360;
     while (angulo >= 360)
         angulo -= 360;
 
-    if (angulo >= 0 && angulo < 90)
-        cout << "1o quadrante";
+    if (angulo > 0 && angulo < 90)
+        cout << "Primeiro quadrante";
     else if (angulo < 180)
-        cout << "2o quadrante";
+        cout << "Segundo quadrante";
     else if (angulo < 270)
-        cout << "3o quadrante";
+        cout << "Terceiro quadrante";
+    else if (angulo < 360)
+        cout << "Quarto quadrante";
     else
-        cout << "4o quadrante";
+        cout << "Nenhum quadrante! O angulo esta em um dos eixos";
 }
 
 // 31. Escreva um programa em C++ para inserir qualquer número do usuário e encontrar o bit de menor ordem
 // do número fornecido usando o operador bit a bit.
 void questao31()
 {
-    unsigned int num;
+    int num, menor;
     cout << "Numero: ";
     cin >> num;
 
-    // Least significant set bit: num & -num
-    unsigned int lsb = num & -num;
+    menor = num & -num;
 
-    cout << "Bit de menor ordem: " << lsb << " (hex: " << hex << lsb << ")";
+    cout << "Bit de menor ordem: " << menor;
 }
 
 int main()
