@@ -187,7 +187,8 @@ void questao10()
 }
 
 int maiorDeTodos(int n1, int n2);
-void questao11(){
+void questao11()
+{
     int n1, n2, maior;
 
     cout << "Digite dois numeros inteiros (separe-os por espaco): ";
@@ -198,8 +199,119 @@ void questao11(){
 }
 
 int menu();
-void questao12(){
+void questao12()
+{
+    float angulo;
+    switch (menu())
+    {
+    case 1:
+        cout << "Digite o angulo desejado para o calculo do seno: ";
+        cin >> angulo;
 
+        cout << "O seno do angulo e: " << sin(angulo);
+        break;
+    case 2:
+        cout << "Digite o angulo desejado para o calculo do cosseno: ";
+        cin >> angulo;
+
+        cout << "O cosseno do angulo e: " << cos(angulo);
+    case 3:
+        float n1, n2;
+
+        cout << "Digite o numero base e o numero potencia (separe-os por espaco): ";
+        cin >> n1 >> n2;
+
+        cout << "O numero " << n1 << " elevado por " << n2 << " e: " << pow(n1, n2);
+    case 4:
+        float numero;
+
+        cout << "Digite um numero para tirar a raiz: ";
+        cin >> numero;
+
+        cout << "A raiz de " << numero << " e: " << sqrt(numero);
+    }
+}
+
+bool estaNoIntervalo(int n1, int n2, int n3);
+void questao13()
+{
+    int n1, n2, n3;
+
+    cout << "Digite dois numero para definir um intervalo (separe-os por espaco): ";
+    cin >> n1 >> n2;
+    cout << "Digite um numero para verificar se esta nesse intervalo: ";
+    cin >> n3;
+
+    if (estaNoIntervalo(n1, n2, n3))
+    {
+        cout << "Esta dentro do intervalo!";
+    }
+    else
+    {
+        cout << "Esta fora do interevalo!";
+    }
+}
+
+int quadranteDoAngulo(float angulo);
+void questao14()
+{
+    float angulo;
+
+    cout << "Digite um angulo (em graus) para verificar o seu quadrante: ";
+    cin >> angulo;
+
+    if (angulo >= 0)
+    {
+        quadranteDoAngulo(angulo);
+        switch (quadranteDoAngulo(angulo))
+        {
+        case 1:
+            cout << "Esta no primeiro quadrante";
+            break;
+        case 2:
+            cout << "Esta no segundo quadrante";
+            break;
+        case 3:
+            cout << "Esta no terceiro quadrante";
+            break;
+        case 4:
+            cout << "Esta no quarto quadrante";
+            break;
+
+        default:
+            cout << "Esta em nenhum dos quatro quadrantes";
+            break;
+        }
+    }
+    else
+    {
+        cout << "Angulo invalido!";
+    }
+}
+
+void orderna(float &c1, float &c2, float &c3, char ordem);
+void questao15()
+{
+    float n1, n2, n3;
+    char ordem;
+
+    cout << "Digite tres numeros aleatorio (separe-os por espaco): ";
+    cin >> n1 >> n2 >> n3;
+    cout << "Digite a ordem que deseja coloca-lo | [c] Crescente | [d] Decrescente\nEscolha: ";
+    cin >> ordem;
+
+    orderna(n1, n2, n3, ordem);
+}
+
+void anoBissexto(int ano);
+void questao16()
+{
+    int ano;
+
+    cout << "Digite o ano para ser analisado: ";
+    cin >> ano;
+
+    anoBissexto(ano);
 }
 
 int main()
@@ -246,24 +358,24 @@ int main()
         case 10:
             questao10();
             break;
-            // case 11:
-            //     questao11();
-            //     break;
-            // case 12:
-            //     questao12();
-            //     break;
-            // case 13:
-            //     questao13();
-            //     break;
-            // case 14:
-            //     questao14();
-            //     break;
-            // case 15:
-            //     questao15();
-            //     break;
-            // case 16:
-            //     questao16();
-            //     break;
+        case 11:
+            questao11();
+            break;
+        case 12:
+            questao12();
+            break;
+        case 13:
+            questao13();
+            break;
+        case 14:
+            questao14();
+            break;
+        case 15:
+            questao15();
+            break;
+        case 16:
+            questao16();
+            break;
 
         default:
             cout << "\nAlternativa invalida!";
@@ -384,13 +496,13 @@ float mediasAluno(float n1, float n2, float n3, char letra)
 }
 bool validarEscolha(char letra)
 {
-    if (letra != 'a' || letra != 'p')
+    if (letra == 'a' || letra == 'p')
     {
-        return false;
+        return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 void inteiroEDecimal(float num, int &n, float &d)
@@ -406,14 +518,15 @@ void ordernarChar(char &c1, char &c2, char &c3)
     }
     if (c1 > c3)
     {
-        swap(c1, c3); 
+        swap(c1, c3);
     }
-    if (c2 > c3) 
+    if (c2 > c3)
     {
         swap(c2, c3);
     }
 }
-int maiorDeTodos(int n1, int n2){
+int maiorDeTodos(int n1, int n2)
+{
     if (n1 >= n2)
     {
         return n1;
@@ -423,14 +536,16 @@ int maiorDeTodos(int n1, int n2){
         return n2;
     }
 }
-int menu(){
+int menu()
+{
     int opcao;
-    cout << "Escolha e digite uma das opcoes a seguir: ";
-    cout << "   Opcao   |   Operacao    " << endl;
-    cout << "     1     | Calcular seno de um angulo    " << endl;
-    cout << "     2     | cacsacacs    " << endl;
-    cout << "     3     |   Operacao    " << endl;
-    cout << "     4     |   Operacao    " << endl;
+
+    cout << "Escolha e digite uma das opcoes a seguir: " << endl;
+    cout << "   Opcao   |               Operacao    " << endl;
+    cout << "     1     |       Calcular seno de um angulo    " << endl;
+    cout << "     2     |      Calcular cosseno de um angulo    " << endl;
+    cout << "     3     | Calcular potencia de um numero por outro    " << endl;
+    cout << "     4     |   Calcular raiz quadrada de um numero    " << endl;
     cin >> opcao;
 
     switch (opcao)
@@ -447,10 +562,99 @@ int menu(){
     case 4:
         return 4;
         break;
-    
+
     default:
         cout << "Opcao invalida!";
         return 0;
         break;
+    }
+}
+bool estaNoIntervalo(int n1, int n2, int n3)
+{
+    if ((n1 >= n3 && n2 <= n3) || (n2 >= n3 && n1 <= n3))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+int quadranteDoAngulo(float angulo)
+{
+    while (angulo > 360)
+    {
+        angulo -= 360;
+    }
+    if (angulo == 0 || angulo == 90 || angulo == 180 || angulo == 270 || angulo == 360)
+    {
+        return 0;
+    }
+    else if (angulo < 90)
+    {
+        return 1;
+    }
+    else if (angulo < 180)
+    {
+        return 2;
+    }
+    else if (angulo < 270)
+    {
+        return 3;
+    }
+    else if (angulo < 360)
+    {
+        return 4;
+    }
+}
+void orderna(float &c1, float &c2, float &c3, char ordem)
+{
+    switch (ordem)
+    {
+    case 'c':
+        if (c1 > c2)
+        {
+            swap(c1, c2);
+        }
+        if (c1 > c3)
+        {
+            swap(c1, c3);
+        }
+        if (c2 > c3)
+        {
+            swap(c2, c3);
+        }
+        cout << "Em ordem crescente: " << c1 << ", " << c2 << ", " << c3 << endl;
+        break;
+    case 'd':
+        if (c1 > c2)
+        {
+            swap(c2, c1);
+        }
+        if (c1 > c3)
+        {
+            swap(c3, c1);
+        }
+        if (c2 > c3)
+        {
+            swap(c3, c2);
+        }
+        cout << "Em ordem decrescente: " << c3 << ", " << c2 << ", " << c1 << endl;
+        break;
+
+    default:
+        cout << "Escolha de ordem invalida!";
+        break;
+    }
+}
+void anoBissexto(int ano)
+{
+    if ((ano % 400 == 0) || ((ano % 4 == 0) && (ano % 100 != 0)))
+    {
+        cout << "O ano " << ano << " e ano bissexto." << endl;
+    }
+    else
+    {
+        cout << "O ano " <<  ano << " nao e ano bissexto." << endl;
     }
 }
