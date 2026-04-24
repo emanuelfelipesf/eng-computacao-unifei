@@ -127,37 +127,133 @@ void questao10()
     cout << "O " << n << "-esimo termo de Fibonacci e: " << resultado;
 }
 
-
+void maiorMenor(int &num1, int &num2);
 void questao11()
 {
-    
+    int num1, num2;
+
+    cout << "Digite dois numeros inteiros (separe-os por espaco): ";
+    cin >> num1 >> num2;
+
+    maiorMenor(num1, num2);
+    cout << "O maior numero e: " << num1 << "\nO menor numero e: " << num2;
 }
+
+void parImpar(int num, string &resultado);
 void questao12()
 {
+    string resultado;
+    int num;
+
+    cout << "Digite um numero: ";
+    cin >> num;
+
+    parImpar(num, resultado);
+    cout << "O numero e: " << resultado;
 }
+
+void mediaAluno(float n1, float n2, float &media, string &situacao);
 void questao13()
 {
+    string situacao;
+    float n1, n2, media;
+
+    cout << "Digite as notas do aluno (separe-as por espaco): ";
+    cin >> n1 >> n2;
+
+    mediaAluno(n1, n2, media, situacao);
+    cout << "A media do aluno e: " << media << "\nSituacao: " << situacao;
 }
+
+void funcaoDivisao(float n1, float n2, float &divisao);
 void questao14()
 {
+    float n1, n2, divisao;
+
+    cout << "Digite dois numeros (separe-os por espaco): ";
+    cin >> n1 >> n2;
+
+    funcaoDivisao(n1, n2, divisao);
+    cout << "Resultado: " << divisao;
 }
+
+void trocarNumeros(int &n1, int &n2);
 void questao15()
 {
+    int n1, n2;
+
+    cout << "Digite dois numeros (separe-os por espaco): ";
+    cin >> n1 >> n2;
+
+    cout << "a: " << n1;
+    cout << "\nb: " << n2;
+
+    trocarNumeros(n1, n2);
+    cout << "a: " << n1;
+    cout << "\nb: " << n2;
 }
+
+void categoriaPessoa(int idade, string &categoria);
 void questao16()
 {
+    int idade;
+    string categoria;
+
+    cout << "Digite sua idade: ";
+    cin >> idade;
+
+    categoriaPessoa(idade, categoria);
+    cout << "A categoria de " << idade << " anos e: " << categoria;
 }
+
+void aumentoSalario(int &salario);
 void questao17()
 {
+    int salario;
+
+    cout << "Salario: ";
+    cin >> salario;
+
+    aumentoSalario(salario);
+    cout << "Salario aumentado: " << salario;
 }
+
+void verificarTriangulo(int a, int b, int c, string &resultado);
 void questao18()
 {
+    string resultado;
+    float a, b, c;
+
+    cout << "Digite os lados do triangulo (separe-os por espaco): ";
+    cin >> a >> b >> c;
+
+    verificarTriangulo(a, b, c, resultado);
+    cout << resultado;
 }
+
+void tipoTriangulo(int a, int b, int c, string &resultado);
 void questao19()
 {
+    int a, b, c;
+    string resultado;
+
+    cout << "Digite os lado do triangulo (separe-os por espaco): ";
+    cin >> a >> b >> c;
+
+    tipoTriangulo(a, b, c, resultado);
+    cout << "O triangulo e do tipo: " << resultado;
 }
+
+void verificaMaior(int &num1, int &num2, int &num3);
 void questao20()
 {
+    int num1, num2, num3;
+
+    cout << "Digite tres numeros (separe-os por espaco): ";
+    cin >> num1 >> num2 >> num3;
+
+    verificaMaior(num1, num2, num3);
+    cout << "O maior deles e: " << num1;
 }
 
 int main()
@@ -166,7 +262,7 @@ int main()
     bool loop = true;
     while (loop)
     {
-        cout << "\nQual questao gostaria de ver? ";
+        cout << "\nQual questao gostaria de ver? (digite 0 para sair) ";
         cin >> resposta;
         switch (resposta)
         {
@@ -359,4 +455,120 @@ int fibonacci(int n)
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 }
-
+void maiorMenor(int &num1, int &num2)
+{
+    if (num1 < num2)
+    {
+        swap(num1, num2);
+    }
+}
+void parImpar(int num, string &resultado)
+{
+    if (num % 2 == 0)
+    {
+        resultado = "par";
+    }
+    else
+    {
+        resultado = "impar";
+    }
+}
+void mediaAluno(float n1, float n2, float &media, string &situacao)
+{
+    media = (n1 + n2)/2;
+    if (media >= 6)
+    {
+        situacao = "Aprovado";
+    }
+    else
+    {
+        situacao = "Reprovado";
+    }
+}
+void funcaoDivisao(float n1, float n2, float &divisao)
+{
+    if (n2 == 0)
+    {
+        cout << "Erro! O divisor e 0" << endl;
+        divisao = 0;
+    }
+    else
+    {
+        divisao = n1/n2;
+    }
+}
+void trocarNumeros(int &n1, int &n2)
+{
+    swap(n1, n2);
+}
+void categoriaPessoa(int idade, string &categoria)
+{
+    if (idade <= 12)
+    {
+        categoria = "Crianca";
+    }
+    else if (idade <= 17 && idade > 12)
+    {
+        categoria = "Adolescente";
+    }
+    else if (idade < 60 && idade > 17)
+    {
+        categoria = "Adulto";
+    }
+    else
+    {
+        categoria = "Idoso";
+    }
+}
+void aumentoSalario(int &salario)
+{
+    if (salario <= 1000)
+    {
+        salario *= 1.2;
+    }
+    else if (salario <= 2000)
+    {
+        salario *= 1.1;
+    }
+    else
+    {
+        salario *= 1.05;
+    }
+}
+void verificarTriangulo(int a, int b, int c, string &resultado)
+{
+    if ((a + b) > c)
+    {
+        resultado = "Pode ser triangulo";
+    }
+    else
+    {
+        resultado = "Nao pode ser triangulo";
+    }
+}
+void tipoTriangulo(int a, int b, int c, string &resultado)
+{
+    if (a == b && b == c)
+    {
+        resultado = "Equilatero";
+    }
+    else if (a == b || a == c || b == c)
+    {
+        resultado = "Isoceles";
+    }
+    else
+    {
+        resultado = "Escaleno";
+    }
+}
+void verificaMaior(int &num1, int &num2, int &num3)
+{
+    if (num1 < num2)
+    {
+        num1 = num2;
+    }
+    if (num1 < num3)
+    {
+        num1 = num3;
+    }
+}
