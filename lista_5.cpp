@@ -137,66 +137,167 @@ void questao8()
     cout << "O valor de x e: " << potencia(x, y);
 }
 
-float mediaIdades(int idades, int quantidade);
-float mediaHomens(int idades, int quantidade);
-float mediaMulheres(int idades, int quantidade);
+float mediaIdades(int idades[], int n, int quantidade);
 void questao9()
 {
     bool loop = true;
-    int idade, qntd_f = 1, qntd_m = 1, qntd_total = 1, soma_idade = 0;
+    int idade = 0, qntd_f = 1, qntd_m = 1, qntd_total = 1, soma_idade = 0;
     char sexo;
 
     int idades[qntd_total], sexos_m[qntd_m], sexos_f[qntd_f];
 
-    while (loop);
+    while (loop)
     {
-        cout << "Digite a idade: ";
+        cout << "Idade: ";
         cin >> idade;
-        cout << "Digite o sexo: ";
+        cout << "Sexo: ";
         cin >> sexo;
 
-        if (idade > 0)
+        if (idade > 0 && (sexo == 'f' || sexo == 'm'))
         {
-            qntd_total++;
             soma_idade += idade;
             idades[qntd_total - 1] = idade;
+            qntd_total++;
+
+            switch (sexo)
+            {
+            case 'f':
+                sexos_f[qntd_f - 1] = idade;
+                qntd_f++;
+                break;
+            case 'm':
+                sexos_m[qntd_m - 1] = idade;
+                qntd_m++;
+                break;
+            
+            default:
+                loop = false;
+                break;
+            }
         }
         else
         {
             loop = false;
         }
         
-        if (sexo == 'f')
-        {
-            qntd_f++;
-        }
-        else if (sexo == 'm')
-        {
-            qntd_m++;
-        }
-        else
-        {
-            loop = false;
-        }
     }
-
-    for (int i = 0; i < qntd_total; i++)
+    
+    cout << "Media das idades totais: " << mediaIdades(idades, qntd_total, qntd_total) << endl;
+    for (int i = 0; i < qntd_total - 1; i++)
     {
         cout << idades[i] << endl;
     }
     
+    cout << "Media das idades dos homens: " << mediaIdades(sexos_m, qntd_m, qntd_m) << endl;
+    for (int i = 0; i < qntd_m - 1; i++)
+    {
+        cout << sexos_m[i] << endl;
+    }
+    cout << "Media das idades das mulheres: " << mediaIdades(sexos_f, qntd_f, qntd_f) << endl;
+    for (int i = 0; i < qntd_f - 1; i++)
+    {
+        cout << sexos_f[i] << endl;
+    }
 }
 
 void questao10()
 {
+    int idades[5][11], qnt_maiorIdade = 0, qnt_peso = 0;
+    float alturas, soma_alturas = 0, pesos, soma_Idades = 0;
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "Time " << i + 1;
+        for (int j = 0; j < 11; j++)
+        {
+            cout << "\nIdade do jogador " << j + 1 << ": ";
+            cin >> idades[i][j];
+            if (idades[i][j] < 18)
+            {
+                qnt_maiorIdade++;
+            }
+            
+            cout << "\nAltura do jogador " << j + 1 << " em metros: ";
+            cin >> alturas;
+            soma_alturas += alturas;
+
+            cout << "\nPeso do jogador " << j + 1 << " em kg: ";
+            cin >> pesos;
+            if (pesos >= 80)
+            {
+                qnt_peso++;
+            }
+        }
+    }
+
+    cout << "A quantidade de jogadores menor de 18 anos: " << qnt_maiorIdade << endl;
+
+    for (int i = 0; i < 5; i++)
+    {
+        soma_Idades = 0;
+        for (int j = 0; j < 11; j++)
+        {
+            soma_Idades += idades[i][j];
+        }
+        cout << "A media da idade do time " << i + 1 << " e: " << soma_Idades/11 << endl;
+    }
+    
+    cout << "A media da alturas de todos os jogadores: " << soma_alturas/55 << endl;
+
+    cout << "A porcentagem de jogadores com mais de 80 quilos: " << (float)qnt_peso/55*100 << "%";
 }
 
+void mediaAritmetica();
+void mediaPonderada();
 void questao11()
 {
+    int escolha;
+
+    cout << "Escolha uma das opcoes\n[1] Media Aritmetica\n[2] Media Ponderada\n[3] Sair\nEscolha: ";
+    cin >> escolha;
+
+    switch (escolha)
+    {
+    case 1:
+        mediaAritmetica();
+        break;
+    case 2:
+        mediaPonderada();
+        break;
+    case 3:
+        cout << "Saindo...";
+        break;
+
+    default:
+        cout << "Escolha invalida!";
+        break;
+    }
 }
 
+bool ehPrimo(int numero);
 void questao12()
 {
+    int numeros[10], qnt_primos = 0;
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << "Numero " << i+1 << ": ";
+        cin >> numeros[i];
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        bool resultado = ehPrimo(numeros[i]);
+        if (resultado)
+        {
+            cout << "Numero " << numeros[i] << " e primo" << endl;
+            qnt_primos++;
+        }
+        else
+        {
+            cout << "Numero " << numeros[i] << " nao e primo" << endl;
+        }
+    }
+    cout << "A quantidade de primos e: " << qnt_primos;
 }
 
 void questao13()
@@ -462,15 +563,60 @@ float potencia(int x, int y)
     }
     return aux;
 }
-float mediaIdades(int idades, int quantidade)
+float mediaIdades(int idades[], int n, int quantidade)
 {
-    return idades/quantidade;
+    int soma = 0;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        soma += idades[i];
+    }
+    return (float)soma/(quantidade - 1);
 }
-float mediaHomens(int idades, int quantidade)
+void mediaAritmetica()
 {
-    return idades/quantidade;
+    float n1, n2;
+
+    cout << "Nota 1: ";
+    cin >> n1;
+    cout << "Nota 2: ";
+    cin >> n2;
+
+    cout << "Media Aritmetica: " << (n1 + n2)/2;
 }
-float mediaMulheres(int idades, int quantidade)
+void mediaPonderada()
 {
-    return idades/quantidade;
+    float n1, n2, n3;
+    int p1, p2, p3;
+
+    cout << "Digite a Nota e Peso 1 (separe-os por espaco): ";
+    cin >> n1 >> p1;
+    cout << "Digite a Nota e Peso 2 (separe-os por espaco): ";
+    cin >> n2 >> p2;
+    cout << "Digite a Nota e Peso 3 (separe-os por espaco): ";
+    cin >> n3 >> p3;
+
+    cout << "Media Ponderada: " << ((n1 * p1) + (n2 * p2) + (n3 * p3))/(p1 + p2 + p3);
+}
+bool ehPrimo(int numero)
+{
+    if (numero < 1)
+    {
+        return false;
+    }
+    else if (numero == 1)
+    {
+        return true;
+    }
+    else
+    {
+        for (int i = 2; i <= sqrt(numero); i++)
+        {
+            if (numero % i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
