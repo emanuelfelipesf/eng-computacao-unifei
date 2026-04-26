@@ -124,7 +124,7 @@ void questao10()
     cout << "Digite a posicao n da sequencia de Fibonacci: ";
     cin >> n;
     resultado = fibonacci(n);
-    cout << "O " << n << "-esimo termo de Fibonacci e: " << resultado;
+    cout << "O n-esimo termo de Fibonacci e: " << resultado;
 }
 
 void maiorMenor(int &num1, int &num2);
