@@ -300,28 +300,137 @@ void questao12()
     cout << "A quantidade de primos e: " << qnt_primos;
 }
 
+float mediaDosNumeros(int soma, int quantidade);
 void questao13()
 {
+    int n, quantidade = 0, soma = 0;
+
+    do
+    {
+        cout << "Numero (0 para sair): ";
+        cin >> n;
+
+        if (n == 0)
+        {
+            break;
+        }
+        
+        quantidade++;
+        soma += n;
+    } while (n != 0);
+    
+    cout << "Media Aritmetica dos numeros: " << mediaDosNumeros(soma, quantidade);
 }
 
 void questao14()
 {
+    bool loop = true;
+    int s = 0, f = 0, soma_filhos = 0;
+    float salario, filho, soma_salarios = 0, maior_salario = 0, qnt_salInferior = 0;
+
+    do
+    {
+        cout << "Salario (0 para sair): ";
+        cin >> salario;
+        if (salario == 0)
+        {
+            break;
+        }
+        cout << "Numero de filhos: ";
+        cin >> filho;
+
+        soma_salarios += salario;
+        soma_filhos += filho;
+
+        if (maior_salario < salario)
+        {
+            maior_salario = salario;
+        }
+        if (salario < 650)
+        {
+            qnt_salInferior++;
+        }
+        
+        s++;
+        f++;
+    } while (loop);
+    
+    if (s > 0) {
+        cout << "Media salarial da populacao: " << soma_salarios/s << endl;
+        cout << "Media numero de filhos: " << soma_filhos/f << endl;
+        cout << "Maior salario: " << maior_salario << endl;
+        cout << "Porcentagem salario inferior: " << qnt_salInferior/s * 100 << endl;
+    } else {
+        cout << "Nenhum dado foi inserido." << endl;
+    }
 }
 
 void questao15()
 {
+    
 }
 
 void questao16()
 {
+    int pares[5][2];
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << "a " << i + 1 << ": ";
+        cin >> pares[i][1];
+        cout << "b " << i + 1 << ": ";
+        cin >> pares[i][2];
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        while (pares[i][1] <= pares[i][2])
+        {
+            if (pares[i][1] % 2 == 0)
+            {
+                cout << pares[i][1] << ", ";
+            }
+            pares[i][1]++;
+        }
+        cout << endl;
+    }
 }
 
 void questao17()
 {
+    int cidades[10][2], aux = 0, qnt_habitantes = 0, soma_idades = 0, mais_nova = 0, qnt_anosEspc = 0;
+
+    while (aux < 10)
+    {
+        cout << "Populacao e Idade (separe-os por espaco): ";
+        cin >> cidades[aux][1] >> cidades[aux][2];
+
+        soma_idades += cidades[aux][2];
+
+        if (mais_nova < cidades[aux][2])
+        {
+            mais_nova = cidades[aux][2];
+        }
+        if (cidades[aux][1] < 10000)
+        {
+            qnt_habitantes++;
+        }
+        if (cidades[aux][2] > 300 && cidades[aux][2] < 10000)
+        {
+            qnt_anosEspc++;
+        }
+        
+        aux++;
+    }
+    
+    cout << "Menos de 10000 habitantes: " << qnt_habitantes << endl;
+    cout << "Media das cidades: " << soma_idades/10 << endl;
+    cout << "Cidade mais nova: " << mais_nova << " anos" << endl;
+    cout << "Mais de 300 anos e menos de 10000 anos: " << qnt_anosEspc << endl;
 }
 
 void questao18()
 {
+
 }
 
 void questao19()
@@ -620,3 +729,8 @@ bool ehPrimo(int numero)
         return true;
     }
 }
+float mediaDosNumeros(int soma, int quantidade)
+{
+    return soma/quantidade;
+}
+
