@@ -42,8 +42,10 @@ float produtoEscalar(float vetor[], int n, float vetor2[], int m)
     {
         produto += vetor[i] * vetor2[i];
     }
-    
+
     
     
     return angulo;
 }
+
+void teste();
