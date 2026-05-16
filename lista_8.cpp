@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 using namespace std;
 
 int contarCaracter(string &palavra);
@@ -22,12 +23,33 @@ void questao2()
 }
 
 void cidadesIguais(string cid_nascimento, string cid_atual);
+int segundaCidade(string &cidade);
 void questao3()
 {
     string cid_nascimento, cid_atual;
-    cout << "Escreva o nome da sua cidade de nascimento: "; cin >> cid_nascimento;
-    cout << "Escreva o nome da sua cidade atual: "; cin >> cid_nascimento;
 
+    cout << "Escreva o nome da sua cidade de nascimento: "; cin >> cid_nascimento;
+    cout << "Escreva o nome da sua cidade atual: "; cin >> cid_atual;
+
+    cidadesIguais(cid_nascimento, cid_atual);
+    int vogais = segundaCidade(cid_atual);
+
+    cout << endl << "Quantidade de vogais: " << vogais << endl << "Cidade alterada: " << cid_atual;
+}
+
+bool palindromo(string palavra);
+void questao4()
+{
+    string palavra;
+    cout << "Palavra: "; cin >> palavra;
+    if (palindromo(palavra))
+    {
+        cout << "E palindroma";
+    }
+    else
+    {
+        cout << "Nao e palindroma";
+    }
 }
 
 int main()
@@ -55,13 +77,16 @@ int main()
         case 3:
             questao3();
             break;
+
+        case 4:
+            questao4();
+            break;
         
         default:
             cout << "Invalido" << endl;
             break;
         }
     }
-    
 
     return 0;
 }
@@ -81,7 +106,6 @@ int contarCaracter(string &palavra)
     
     return cont;
 }
-
 string nomeDoMes()
 {
     string mes;
@@ -104,7 +128,7 @@ string abreviarMes(string mes)
 }
 void mes(string mes_abreviado)
 {
-    cout << mesAbreviado;
+    cout << mes_abreviado;
 }
 void cidadesIguais(string cid_nascimento, string cid_atual)
 {
@@ -116,5 +140,38 @@ void cidadesIguais(string cid_nascimento, string cid_atual)
     {
         cout << "Nao sao iguais";
     }
-    
 }
+int segundaCidade(string &cidade)
+{
+    int qntd_vogais = 0;
+    for (int i = 0; i < cidade.size(); i++)
+    {
+        char letra = tolower(cidade[i]);
+        if (letra == 'a' || letra == 'e' || letra == 'i' || letra == 'o' || letra == 'u')
+        {
+            qntd_vogais++;
+            cidade[i] = '?';
+        }
+    }
+    
+    return qntd_vogais;
+}
+bool palindromo(string palavra)
+{
+    char contrario[palavra.size()];
+
+    for (int i = 0; i < palavra.size(); i++)
+    {
+        contrario[i] = palavra[palavra.size() - i];
+    }
+
+    if (tolower(palavra) == (string)contrario)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
