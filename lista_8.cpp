@@ -162,10 +162,11 @@ bool palindromo(string palavra)
 
     for (int i = 0; i < palavra.size(); i++)
     {
+        palavra[i] = tolower(palavra[i]);
         contrario[i] = palavra[palavra.size() - i];
     }
 
-    if (tolower(palavra) == (string)contrario)
+    if (palavra == (string)contrario)
     {
         return true;
     }
