@@ -37,6 +37,7 @@ void questao3()
     cout << endl << "Quantidade de vogais: " << vogais << endl << "Cidade alterada: " << cid_atual;
 }
 
+string inverterString(string palavra);
 bool palindromo(string palavra);
 void questao4()
 {
@@ -50,6 +51,43 @@ void questao4()
     {
         cout << "Nao e palindroma";
     }
+}
+
+int contarVogais(string frase);
+string alterarString(string frase);
+void impressao(int quantidade, string frase);
+void questao5()
+{
+    string frase;
+    int quantidade = 0;
+
+    cout << "Frase: ";
+    cin >> frase;
+
+    frase = inverterString(frase);
+    quantidade = contarCaracter(frase);
+    frase = alterarString(frase);
+    impressao(quantidade, frase);
+}
+
+void questao6()
+{
+
+}
+
+void questao7()
+{
+
+}
+
+void questao8()
+{
+
+}
+
+void questao9()
+{
+
 }
 
 int main()
@@ -80,6 +118,26 @@ int main()
 
         case 4:
             questao4();
+            break;
+
+        case 5:
+            questao5();
+            break;
+
+        case 6:
+            questao6();
+            break;
+
+        case 7:
+            questao7();
+            break;
+
+        case 8:
+            questao8();
+            break;
+
+        case 9:
+            questao9();
             break;
         
         default:
@@ -156,23 +214,63 @@ int segundaCidade(string &cidade)
     
     return qntd_vogais;
 }
+string inverterString(string palavra)
+{
+    int i = 0, j = palavra.length() - 1;
+    string invertida = palavra;
+
+    while (i < j)
+    {
+        swap(invertida[i], invertida[j]);
+        i++; j--;
+    }
+    
+    for (int i = 0; i < palavra.size(); i++)
+    {
+        invertida[i] = tolower(invertida[i]);
+    }
+    
+    return invertida;
+}
 bool palindromo(string palavra)
 {
-    char contrario[palavra.size()];
+    string invertida = inverterString(palavra);
 
     for (int i = 0; i < palavra.size(); i++)
     {
         palavra[i] = tolower(palavra[i]);
-        contrario[i] = palavra[palavra.size() - i];
     }
 
-    if (palavra == (string)contrario)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return (palavra == invertida) ? true : false;
 }
+int contarVogais(string frase)
+{
+    int cont = 0;
+    for (int i = 0; i < frase.size(); i++)
+    {
+        char letra = tolower(frase[i]);
+        if (letra == 'a' || letra == 'o' || letra == 'i' || letra == 'e' || letra == 'u')
+        {
+            cont++;
+        }
+    }
+    
+    return cont;
+}
+string alterarString(string frase)
+{
+    for (int i = 0; i < frase.size(); i++)
+    {
+        char letra = tolower(frase[i]);
+        if (letra == 'a' || letra == 'o' || letra == 'i' || letra == 'e' || letra == 'u')
+        {
+            frase[i] = '?';
+        }
+    }
 
+    return frase;
+}
+void impressao(int quantidade, string frase)
+{
+    cout << frase << endl << "Quantidade de vogais: " << quantidade;
+}
