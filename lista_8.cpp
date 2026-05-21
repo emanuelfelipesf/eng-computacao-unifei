@@ -62,13 +62,14 @@ void questao5()
     int quantidade = 0;
 
     cout << "Frase: ";
-    cin >> frase;
+    cin.ignore() >> frase;
+    getline(cin, frase);
 
     frase = inverterString(frase);
     quantidade = contarCaracter(frase);
     frase = alterarString(frase);
     impressao(quantidade, frase);
-}
+} 
 
 void questao6()
 {
@@ -245,28 +246,31 @@ bool palindromo(string palavra)
 }
 int contarVogais(string frase)
 {
-    int cont = 0;
-    for (int i = 0; i < frase.size(); i++)
+    int cont = 0, i = 0;
+    char letra = tolower(frase[i]);
+    do
     {
-        char letra = tolower(frase[i]);
         if (letra == 'a' || letra == 'o' || letra == 'i' || letra == 'e' || letra == 'u')
         {
+            letra = tolower(frase[i++]);
             cont++;
         }
-    }
+    } while (i < frase.length());
     
     return cont;
 }
 string alterarString(string frase)
 {
-    for (int i = 0; i < frase.size(); i++)
+    int i = 0;
+    char letra = tolower(frase[i]);
+    do
     {
-        char letra = tolower(frase[i]);
         if (letra == 'a' || letra == 'o' || letra == 'i' || letra == 'e' || letra == 'u')
         {
             frase[i] = '?';
         }
-    }
+        letra = tolower(frase[i++]);
+    } while (letra != '\0');
 
     return frase;
 }
