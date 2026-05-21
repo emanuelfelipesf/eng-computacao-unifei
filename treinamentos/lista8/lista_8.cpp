@@ -69,7 +69,7 @@ void questao5()
     quantidade = contarCaracter(frase);
     frase = alterarString(frase);
     impressao(quantidade, frase);
-} 
+}
 
 void questao6()
 {
