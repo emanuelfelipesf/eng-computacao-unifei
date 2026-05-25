@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cctype>
+#include <cstdio>
+#include <limits>
 using namespace std;
+
 
 int contarCaracter(string &palavra);
 void questao1()
@@ -53,42 +56,78 @@ void questao4()
     }
 }
 
-int contarVogais(string frase);
-string alterarString(string frase);
-void impressao(int quantidade, string frase);
+struct Vogais
+{
+    int a = 0, e = 0, i = 0, o = 0, u = 0;
+};
+void manipularFrase(Vogais &vogal, string &frase);
 void questao5()
 {
     string frase;
-    int quantidade = 0;
+    Vogais vg;
 
     cout << "Frase: ";
-    cin.ignore() >> frase;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, frase);
 
     frase = inverterString(frase);
-    quantidade = contarCaracter(frase);
-    frase = alterarString(frase);
-    impressao(quantidade, frase);
+    manipularFrase(vg, frase);
+
+    cout << "Frase final: " << frase << endl << "Vogais: " << "\n\t a: " << vg.a << "\n\t e: " << vg.e << "\n\t i: " << vg.i << "\n\t o: " << vg.o << "\n\t u: " << vg.u;
 }
 
+void manipularArquivo(string &nome);
 void questao6()
 {
+    string nome;
 
+    cout << "Arquivo .gif: ";
+    cin >> nome;
+
+    manipularArquivo(nome);
+
+    cout << nome;
 }
 
+void maiusculasMinusculas(string &palavra);
 void questao7()
 {
+    string palavra;
 
+    cout << "Palavra: ";
+    cin >> palavra;
+
+    maiusculasMinusculas(palavra);
+    cout << "Palavra alterada: " << palavra;
 }
 
+struct Vetores
+{
+    char v1[20], v2[10];
+};
+void comprimentos(Vetores &vtrs);
 void questao8()
 {
+    Vetores vt;
 
+    for (int i = 0; i < 20; i++)
+    {
+        cout << i + 1 << ": ";
+        cin >> vt.v1[i];
+    }
+    
+    comprimentos(vt);
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << vt.v2[i] << endl;
+    }
+    
 }
 
 void questao9()
 {
-
+    
 }
 
 int main()
@@ -244,37 +283,70 @@ bool palindromo(string palavra)
 
     return (palavra == invertida) ? true : false;
 }
-int contarVogais(string frase)
+void manipularFrase(Vogais &vogal, string &frase)
 {
-    int cont = 0, i = 0;
-    char letra = tolower(frase[i]);
-    do
+    for (int i = 0; i < frase.size(); i++)
     {
-        if (letra == 'a' || letra == 'o' || letra == 'i' || letra == 'e' || letra == 'u')
+        char letra = tolower(frase[i]);
+        switch (letra)
         {
-            letra = tolower(frase[i++]);
-            cont++;
-        }
-    } while (i < frase.length());
-    
-    return cont;
-}
-string alterarString(string frase)
-{
-    int i = 0;
-    char letra = tolower(frase[i]);
-    do
-    {
-        if (letra == 'a' || letra == 'o' || letra == 'i' || letra == 'e' || letra == 'u')
-        {
+        case 'a':
+            vogal.a++;
             frase[i] = '?';
+            break;
+        case 'e':
+            vogal.e++;
+            frase[i] = '?';
+            break;
+        case 'i':
+            vogal.i++;
+            frase[i] = '?';
+            break;
+        case 'o':
+            vogal.o++;
+            frase[i] = '?';
+            break;
+        case 'u':
+            vogal.u++;
+            frase[i] = '?';
+            break;
+        
+        default:
+            break;
         }
-        letra = tolower(frase[i++]);
-    } while (letra != '\0');
-
-    return frase;
+    }
+    
 }
-void impressao(int quantidade, string frase)
+void manipularArquivo(string &nome)
 {
-    cout << frase << endl << "Quantidade de vogais: " << quantidade;
+    string nomeNovo;
+
+    for (int i = 0; i < nome.size() - 3; i++)
+    {
+        nomeNovo += nome[i];
+    }    
+    
+    nome = nomeNovo.append("bmp");
 }
+void maiusculasMinusculas(string &palavra)
+{
+    for (int i = 0; i < palavra.size(); i++)
+    {
+        if (isupper(palavra[i]))
+        {
+            palavra[i] = tolower(palavra[i]);
+        }
+        else
+        {
+            palavra[i] = toupper(palavra[i]);
+        }
+    }
+}
+void comprimentos(Vetores &vtrs)
+{
+    for (int i = 9; i < 20; i++)
+    {
+        vtrs.v2[i] = vtrs.v1[i];
+    }
+}
+
