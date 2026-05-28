@@ -116,8 +116,7 @@ struct Horario
 };
 struct Data
 {
-    int dia, ano;
-    string mes;
+    int dia, mes, ano;
 };
 struct Compromisso
 {
@@ -126,7 +125,7 @@ struct Compromisso
 void CadastroHora(Horario &tempo);
 void CadastroData(Data &espaco);
 void CadastroCompromisso(Compromisso &cmp, Horario tempo, Data espaco);
-void questao6() 
+void questao6()
 {
     Horario tempo;
     Data espaco;
@@ -135,13 +134,40 @@ void questao6()
     CadastroHora(tempo);
     CadastroData(espaco);
     CadastroCompromisso(cmp, tempo, espaco);
-    
-    cout << "\n\tCompromisso cadastrado!\n" << cmp.data << endl << cmp.horario << endl << cmp.texto;
+
+    cout << "\n\tCompromisso cadastrado!\n"
+         << cmp.data << endl
+         << cmp.horario << endl
+         << cmp.texto;
 }
 
+struct Estudante
+{
+    int matricula;
+    string nome, situacao;
+    float n1, n2, n3, media;
+};
+void Cadastro07(Estudante &aluno);
+int maiorNotaN1(Estudante aluno[5]);
+int maiorMediaGeral(Estudante aluno[5]);
+int menorMediaGeral(Estudante aluno[5]);
 void questao7()
 {
+    Estudante turma[5];
+    int idx_maiorN1, idx_maiorMedia, idx_menorMedia;
+
+    for (int i = 0; i < 5; i++)
+    {
+        Cadastro07(turma[i]);
+    }
     
+    idx_maiorN1 = maiorNotaN1(turma);
+    idx_maiorMedia = maiorMediaGeral(turma);
+    idx_menorMedia = menorMediaGeral(turma);
+
+    cout << "Aluno de maior nota na N1: " << turma[idx_maiorN1].nome << endl << "\t(matricula: " << turma[idx_maiorN1].matricula << " \tsituacao: " << turma[idx_maiorN1].situacao << ")" << endl;
+    cout << "Aluno de maior media geral: " << turma[idx_maiorMedia].nome << endl << "\t(matricula: " << turma[idx_maiorMedia].matricula << " \tsituacao: " << turma[idx_maiorMedia].situacao << ")" << endl;
+    cout << "Aluno de menor media geral: " << turma[idx_menorMedia].nome << endl << "\t(matricula: " << turma[idx_menorMedia].matricula <<  " \tsituacao: " << turma[idx_menorMedia].situacao << ")" << endl;
 }
 
 void questao8() {}
@@ -238,11 +264,16 @@ int main()
 
 void Cadastro01(bolsaDeValores &compania)
 {
-    cout << "Primeiro Nome da companhia: "; cin >> compania.nome;
-    cout << "Situacao resumida atual da companhia: "; cin >> compania.situacao;
-    cout << "Valor atual da acao (em reais): "; cin >> compania.v_atual;
-    cout << "Valor anterior (em reais): "; cin >> compania.v_anterior;
-    cout << "Variacao da acao da bolsa (em porcentagem): "; cin >> compania.prct_variacao;
+    cout << "Nome da companhia: ";
+    getline(cin >> ws, compania.nome);
+    cout << "Situacao atual da companhia: ";
+    getline(cin >> ws, compania.situacao);
+    cout << "Valor atual da acao (em reais): ";
+    cin >> compania.v_atual;
+    cout << "Valor anterior (em reais): ";
+    cin >> compania.v_anterior;
+    cout << "Variacao da acao da bolsa (em porcentagem): ";
+    cin >> compania.prct_variacao;
 }
 void Apresentacao(bolsaDeValores compania)
 {
@@ -254,34 +285,115 @@ void Apresentacao(bolsaDeValores compania)
 }
 void Cadastro04(Pessoa &usuario)
 {
-    cout << "Primeiro Nome: "; cin >> usuario.nome;
-    cout << "Idade: "; cin >> usuario.idade;
-    cout << "CEP do Endereco: "; cin >> usuario.endereco;
+    cout << "Nome: ";
+    getline(cin >> ws, usuario.nome);
+    cout << "Idade: ";
+    cin >> usuario.idade;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Endereco: ";
+    getline(cin >> ws, usuario.endereco);
 }
-
 void Cadastro05(Alunos &aluno)
 {
-    cout << "Primeiro Nome: "; cin >> aluno.nome;
-    cout << "Matricula: "; cin >> aluno.matricula;
-    cout << "Sigla do Curso: "; cin >> aluno.curso;
+    cout << "Nome: ";
+    getline(cin >> ws, aluno.nome);
+    cout << "Matricula: ";
+    cin >> aluno.matricula;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Curso: ";
+    getline(cin >> ws, aluno.curso);
 }
 void CadastroHora(Horario &tempo)
 {
-    cout << "Hora: "; cin >> tempo.horas;
-    cout << "Minuto: "; cin >> tempo.minutos;
-    cout << "Segundo: "; cin >> tempo.segundos;
+    cout << "Hora: ";
+    cin >> tempo.horas;
+    cout << "Minuto: ";
+    cin >> tempo.minutos;
+    cout << "Segundo: ";
+    cin >> tempo.segundos;
 }
 void CadastroData(Data &espaco)
 {
-    cout << "Dia: "; cin >> espaco.dia;
-    cout << "Mes: "; cin >> espaco.mes;
-    cout << "Ano: "; cin >> espaco.ano;
+    cout << "Dia (dd): ";
+    cin >> espaco.dia;
+    cout << "Mes (mm): ";
+    cin >> espaco.mes;
+    cout << "Ano (aa): ";
+    cin >> espaco.ano;
 }
 void CadastroCompromisso(Compromisso &cmp, Horario tempo, Data espaco)
 {
-    cmp.data = to_string(espaco.dia) + "/" + espaco.mes + "/" + to_string(espaco.ano);
+    cmp.data = to_string(espaco.dia) + "/" + to_string(espaco.mes) + "/" + to_string(espaco.ano);
     cmp.horario = to_string(tempo.horas) + ":" + to_string(tempo.minutos) + ":" + to_string(tempo.segundos);
+    cout << "Palavra que resume o compromisso: ";
+    getline(cin >> ws, cmp.texto);
+}
+void Cadastro07(Estudante &aluno)
+{
+    cout << "\n\tCadastro do Aluno\n"
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Nome do aluno: "; getline(cin >> ws, aluno.nome);
+    cout << "Matricula: "; cin >> aluno.matricula;
+    cout << "Nota da Primeira prova: "; cin >> aluno.n1;
+    cout << "Nota da Segunda prova: "; cin >> aluno.n2;
+    cout << "Nota da Terceira prova: "; cin >> aluno.n3;
+    aluno.media = (aluno.n1 + aluno.n2 + aluno.n3)/3;
+    if (aluno.media >= 6)
+    {
+        aluno.situacao = "Aprovado";
+    }
+    else
+    {
+        aluno.situacao = "Reprovado";
+    }
+}
+int maiorNotaN1(Estudante aluno[5])
+{
+    int idx = 0;
+    float maior = aluno[0].n1;
 
-    cout << "Palavra que resume o compromisso: "; cin >> cmp.texto;
+    for (int i = 1; i < 5; i++)
+    {
+        if (aluno[i].n1 > maior)
+        {
+            maior = aluno[i].n1;
+            idx = i;
+        }
+    }
+
+    return idx;
+}
+int maiorMediaGeral(Estudante aluno[5])
+{
+    int idx = 0;
+    float maior = aluno[0].media;
+
+    for (int i = 1; i < 5; i++)
+    {
+        if (aluno[i].media > maior)
+        {
+            maior = aluno[i].media;
+            idx = i;
+        }
+    }
+
+    return idx;
+}
+
+int menorMediaGeral(Estudante aluno[5])
+{
+    int idx = 0;
+    float menor = aluno[0].media;
+
+    for (int i = 1; i < 5; i++)
+    {
+        if (aluno[i].media < menor)
+        {
+            menor = aluno[i].media;
+            idx = i;
+        }
+    }
+
+    return idx;
 }
 
