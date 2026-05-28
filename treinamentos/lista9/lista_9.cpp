@@ -170,15 +170,105 @@ void questao7()
     cout << "Aluno de menor media geral: " << turma[idx_menorMedia].nome << endl << "\t(matricula: " << turma[idx_menorMedia].matricula <<  " \tsituacao: " << turma[idx_menorMedia].situacao << ")" << endl;
 }
 
-void questao8() {}
+struct Vetor
+{
+    float x, y, z;
+};
+void somaVetores(Vetor vetores[3]);
+void questao8()
+{
+    Vetor vetor[3];
 
-void questao9() {}
+    for (int i = 0; i < 2; i++)
+    {
+        cout << "\tVetor" << i+1 << endl;
+        cout << "Posicao x: "; cin >> vetor[i].x;
+        cout << "Posicao y: "; cin >> vetor[i].y;
+        cout << "Posicao z: "; cin >> vetor[i].z;
+    }
 
-void questao10() {}
+    somaVetores(vetor);
 
-void questao11() {}
+    cout << "Soma dos vetores:\n";
+    cout << "\tPosicao x: " << vetor[2].x;
+    cout << "\n\tPosicao y: " << vetor[2].y;
+    cout << "\n\tPosicao z: " << vetor[2].z;
+}
 
-void questao12() {}
+struct Universitario
+{
+    int matricula, codigo;
+    float n1, n2, media;
+    string nome;
+};
+void Cadastro09(Universitario &turma);
+void calculoMedia(Universitario &turma);
+void questao9()
+{
+    Universitario turma[10];
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << "\n\tCadastro do Aluno" << i+1 << endl;
+        Cadastro09(turma[i]);
+        calculoMedia(turma[i]);
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << "Apresentacao" << endl;
+        cout << "\tNome: " << turma[i].nome;
+        cout << "\tMedia: " << turma[i].media << endl;
+    }
+}
+
+struct Dados
+{
+    string nome;
+    int idade, cpf, nascDia, nascMes, nascAno;
+    char sexo, codigo[99];
+};
+void Cadastro10(Dados &funcionario);
+void questao10()
+{
+    Dados funcionario;
+
+    Cadastro10(funcionario);
+}
+
+struct Pessoas
+{
+    string nome, endereco;
+    int telefone;
+};
+void Cadastro11(Pessoas &p);
+void questao11()
+{
+    Pessoas p[15];
+    
+    for (int i = 0; i < 15; i++)
+    {
+        Cadastro11(p[i]);
+    }
+    
+    string maior = p[0].nome;
+    for (int i = 0; i < 15; i++)
+    {
+        for (int j = 0; j < 15; j++)
+        {
+            if (p[j].nome > maior)
+            {
+                maior = p[j].nome;
+            }
+            cout << p[i].nome << endl;
+        }
+    }
+}
+
+void questao12()
+{
+    
+}
 
 void questao13() {}
 
@@ -330,7 +420,7 @@ void CadastroCompromisso(Compromisso &cmp, Horario tempo, Data espaco)
 }
 void Cadastro07(Estudante &aluno)
 {
-    cout << "\n\tCadastro do Aluno\n"
+    cout << "\n\tCadastro do Aluno\n";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Nome do aluno: "; getline(cin >> ws, aluno.nome);
     cout << "Matricula: "; cin >> aluno.matricula;
@@ -379,7 +469,6 @@ int maiorMediaGeral(Estudante aluno[5])
 
     return idx;
 }
-
 int menorMediaGeral(Estudante aluno[5])
 {
     int idx = 0;
@@ -396,4 +485,39 @@ int menorMediaGeral(Estudante aluno[5])
 
     return idx;
 }
-
+void somaVetores(Vetor vetores[3])
+{
+    vetores[2].x = (vetores[0].x + vetores[1].x);
+    vetores[2].y = (vetores[0].y + vetores[1].y);
+    vetores[2].z = (vetores[0].z + vetores[1].z);
+}
+void Cadastro09(Universitario &turma)
+{
+    cout << "Matricula: "; cin >> turma.matricula;
+    cout << "Nome: "; cin >> turma.nome;
+    cout << "Codigo: "; cin >> turma.codigo;
+    cout << "Nota 1: "; cin >> turma.n1;
+    cout << "Nota 2: "; cin >> turma.n2;
+}
+void calculoMedia(Universitario &turma)
+{
+    turma.media = ((turma.n1 * 1) + (turma.n2 * 2))/3;
+}
+void Cadastro10(Dados &funcionario)
+{
+    cout << "Nome: "; 
+    getline(cin >> ws, funcionario.nome);
+    cout << "Idade: "; cin >> funcionario.idade;
+    cout << "Sexo (M/F): "; cin >> funcionario.sexo;
+    cout << "CPF (apenas numeros): "; cin >> funcionario.cpf;
+    cout << "Data de Nascimento (dd mm aa): "; cin >> funcionario.nascDia >> funcionario.nascMes >> funcionario.nascAno;
+    cout << "Codigo do Setor: "; cin >> funcionario.codigo;
+}
+void Cadastro11(Pessoas &p)
+{
+    cout << "Nome: "; getline(cin >> ws, p.nome);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Endereco: "; getline(cin >> ws, p.endereco);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Telefone (apenas numeros): "; cin >> p.telefone;
+}
