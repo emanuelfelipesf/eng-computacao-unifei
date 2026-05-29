@@ -160,14 +160,14 @@ void questao7()
     {
         Cadastro07(turma[i]);
     }
-    
+
     idx_maiorN1 = maiorNotaN1(turma);
     idx_maiorMedia = maiorMediaGeral(turma);
     idx_menorMedia = menorMediaGeral(turma);
 
     cout << "Aluno de maior nota na N1: " << turma[idx_maiorN1].nome << endl << "\t(matricula: " << turma[idx_maiorN1].matricula << " \tsituacao: " << turma[idx_maiorN1].situacao << ")" << endl;
     cout << "Aluno de maior media geral: " << turma[idx_maiorMedia].nome << endl << "\t(matricula: " << turma[idx_maiorMedia].matricula << " \tsituacao: " << turma[idx_maiorMedia].situacao << ")" << endl;
-    cout << "Aluno de menor media geral: " << turma[idx_menorMedia].nome << endl << "\t(matricula: " << turma[idx_menorMedia].matricula <<  " \tsituacao: " << turma[idx_menorMedia].situacao << ")" << endl;
+    cout << "Aluno de menor media geral: " << turma[idx_menorMedia].nome << endl << "\t(matricula: " << turma[idx_menorMedia].matricula << " \tsituacao: " << turma[idx_menorMedia].situacao << ")" << endl;
 }
 
 struct Vetor
@@ -181,10 +181,13 @@ void questao8()
 
     for (int i = 0; i < 2; i++)
     {
-        cout << "\tVetor" << i+1 << endl;
-        cout << "Posicao x: "; cin >> vetor[i].x;
-        cout << "Posicao y: "; cin >> vetor[i].y;
-        cout << "Posicao z: "; cin >> vetor[i].z;
+        cout << "\tVetor" << i + 1 << endl;
+        cout << "Posicao x: ";
+        cin >> vetor[i].x;
+        cout << "Posicao y: ";
+        cin >> vetor[i].y;
+        cout << "Posicao z: ";
+        cin >> vetor[i].z;
     }
 
     somaVetores(vetor);
@@ -209,7 +212,7 @@ void questao9()
 
     for (int i = 0; i < 10; i++)
     {
-        cout << "\n\tCadastro do Aluno" << i+1 << endl;
+        cout << "\n\tCadastro do Aluno" << i + 1 << endl;
         Cadastro09(turma[i]);
         calculoMedia(turma[i]);
     }
@@ -245,12 +248,12 @@ void Cadastro11(Pessoas &p);
 void questao11()
 {
     Pessoas p[15];
-    
+
     for (int i = 0; i < 15; i++)
     {
         Cadastro11(p[i]);
     }
-    
+
     string maior = p[0].nome;
     for (int i = 0; i < 15; i++)
     {
@@ -265,17 +268,355 @@ void questao11()
     }
 }
 
+struct OsCaraQueEstuda
+{
+    string nome;
+    char situacao;
+    int matricula;
+    float mediaFinal;
+};
+void Cadastro12(OsCaraQueEstuda &e);
 void questao12()
 {
-    
+    OsCaraQueEstuda turma[10], aprovados[10], reprovados[10];
+    int a = 0, r = 0;
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << "\n\tCadastro do aluno " << i + 1 << endl;
+        Cadastro12(turma[i]);
+
+        if (turma[i].situacao == 'a')
+        {
+            aprovados[a].nome = turma[i].nome;
+            aprovados[a].matricula = turma[i].matricula;
+            aprovados[a].mediaFinal = turma[i].mediaFinal;
+            a++;
+        }
+        if (turma[i].situacao == 'r')
+        {
+            reprovados[r].nome = turma[i].nome;
+            reprovados[r].matricula = turma[i].matricula;
+            reprovados[r].mediaFinal = turma[i].mediaFinal;
+            r++;
+        }
+    }
+
+    cout << "\n\tAprovados\n";
+    for (int i = 0; i < a; i++)
+    {
+        cout << "Nome: " << aprovados[i].nome << endl;
+        cout << "Matricula: " << aprovados[i].matricula << endl;
+        cout << "Media Final: " << aprovados[i].mediaFinal << endl;
+    }
+
+    cout << "\n\tReprovados\n";
+    for (int i = 0; i < r; i++)
+    {
+        cout << "Nome: " << reprovados[i].nome << endl;
+        cout << "Matricula: " << reprovados[i].matricula << endl;
+        cout << "Media Final: " << reprovados[i].mediaFinal << endl;
+    }
 }
 
 void questao13() {}
 
-void questao14() {}
+struct Endereco
+{
+    string rua, complemento, bairro, cidade, estado, pais;
+    int numero, cep;
+};
+struct Telefone
+{
+    int ddd, numero;
+};
+struct DataAniversario
+{
+    int dia, mes, ano;
+};
+struct Agenda
+{
+    string nome;
+    string email;
+    Endereco endereco;
+    Telefone telefone;
+    DataAniversario aniversario;
+    string observacao;
+};
+static void cadastrarEndereco(Endereco &e)
+{
+    cout << "Rua: ";
+    getline(cin >> ws, e.rua);
+    cout << "Numero: ";
+    cin >> e.numero;
+    cout << "Complemento: ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, e.complemento);
+    cout << "Bairro: ";
+    getline(cin >> ws, e.bairro);
+    cout << "CEP: ";
+    cin >> e.cep;
+    cout << "Cidade: ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, e.cidade);
+    cout << "Estado: ";
+    getline(cin >> ws, e.estado);
+    cout << "Pais: ";
+    getline(cin >> ws, e.pais);
+}
+static void cadastrarTelefone(Telefone &t)
+{
+    cout << "DDD: ";
+    cin >> t.ddd;
+    cout << "Numero: ";
+    cin >> t.numero;
+}
+static void cadastrarAniversario(DataAniversario &d)
+{
+    cout << "Dia: ";
+    cin >> d.dia;
+    cout << "Mes: ";
+    cin >> d.mes;
+    cout << "Ano: ";
+    cin >> d.ano;
+}
+static void cadastrarPessoa(Agenda &p)
+{
+    cout << "Nome: ";
+    getline(cin >> ws, p.nome);
+
+    cout << "E-mail: ";
+    getline(cin >> ws, p.email);
+
+    cout << "Endereco:\n";
+    cadastrarEndereco(p.endereco);
+
+    cout << "Telefone:\n";
+    cadastrarTelefone(p.telefone);
+
+    cout << "Data de aniversario:\n";
+    cadastrarAniversario(p.aniversario);
+
+    cout << "Observacao: ";
+    getline(cin >> ws, p.observacao);
+}
+static void imprimirCompacto(const Agenda &p)
+{
+    cout << "Nome: " << p.nome << "\n";
+    cout << "Telefone: (" << p.telefone.ddd << ") " << p.telefone.numero << "\n";
+    cout << "E-mail: " << p.email << "\n";
+}
+static void imprimirCompleto(const Agenda &p)
+{
+    imprimirCompacto(p);
+    cout << "Endereco: " << p.endereco.rua << ", " << p.endereco.numero;
+    if (!p.endereco.complemento.empty())
+        cout << " - " << p.endereco.complemento;
+    cout << "\n";
+    cout << "Bairro: " << p.endereco.bairro << "\n";
+    cout << "CEP: " << p.endereco.cep << "\n";
+    cout << "Cidade: " << p.endereco.cidade << "\n";
+    cout << "Estado: " << p.endereco.estado << "\n";
+    cout << "Pais: " << p.endereco.pais << "\n";
+    cout << "Aniversario: " << p.aniversario.dia << "/" << p.aniversario.mes << "/" << p.aniversario.ano << "\n";
+    cout << "Observacao: " << p.observacao << "\n";
+}
+static int compararNome(const string &a, const string &b)
+{
+    if (a < b)
+        return -1;
+    if (a > b)
+        return 1;
+    return 0;
+}
+void questao14()
+{
+    Agenda agenda[100];
+    int n = 0;
+
+    while (true)
+    {
+        cout << "\n--- Agenda (Questao 14) ---\n";
+        cout << "1) Buscar por primeiro nome\n";
+        cout << "2) Buscar por mes do aniversario\n";
+        cout << "3) Buscar por dia e mes do aniversario\n";
+        cout << "4) Inserir pessoa (ordem alfabetica)\n";
+        cout << "5) Retirar pessoa (remove todos os dados pelo nome)\n";
+        cout << "6) Imprimir agenda\n";
+        cout << "0) Voltar\n";
+        cout << "Opcao: ";
+
+        int op;
+        cin >> op;
+        if (op == 0)
+            return;
+
+        switch (op)
+        {
+        case 1:
+        {
+            string nomeBusca;
+            cout << "Digite o primeiro nome: ";
+            getline(cin >> ws, nomeBusca);
+
+            bool achou = false;
+            for (int i = 0; i < n; i++)
+            {
+                if (agenda[i].nome.rfind(nomeBusca, 0) == 0)
+                {
+                    imprimirCompleto(agenda[i]);
+                    cout << "-------------------------\n";
+                    achou = true;
+                }
+            }
+            if (!achou)
+                cout << "Nenhuma pessoa encontrada.\n";
+            break;
+        }
+        case 2:
+        {
+            int mes;
+            cout << "Digite o mes (1-12): ";
+            cin >> mes;
+
+            bool achou = false;
+            for (int i = 0; i < n; i++)
+            {
+                if (agenda[i].aniversario.mes == mes)
+                {
+                    imprimirCompleto(agenda[i]);
+                    cout << "-------------------------\n";
+                    achou = true;
+                }
+            }
+            if (!achou)
+                cout << "Nenhuma pessoa encontrada.\n";
+            break;
+        }
+        case 3:
+        {
+            int dia, mes;
+            cout << "Digite dia (1-31): ";
+            cin >> dia;
+            cout << "Digite mes (1-12): ";
+            cin >> mes;
+
+            bool achou = false;
+            for (int i = 0; i < n; i++)
+            {
+                if (agenda[i].aniversario.dia == dia && agenda[i].aniversario.mes == mes)
+                {
+                    imprimirCompleto(agenda[i]);
+                    cout << "-------------------------\n";
+                    achou = true;
+                }
+            }
+            if (!achou)
+                cout << "Nenhuma pessoa encontrada.\n";
+            break;
+        }
+        case 4:
+        {
+            if (n >= 100)
+            {
+                cout << "Agenda cheia (100 pessoas).\n";
+                break;
+            }
+
+            Agenda pessoa;
+            cout << "\n--- Inserir pessoa ---\n";
+            cadastrarPessoa(pessoa);
+
+            int pos = 0;
+            while (pos < n && compararNome(agenda[pos].nome, pessoa.nome) < 0)
+                pos++;
+
+            for (int i = n; i > pos; i--)
+                agenda[i] = agenda[i - 1];
+
+            agenda[pos] = pessoa;
+            n++;
+            cout << "Pessoa inserida com sucesso!\n";
+            break;
+        }
+        case 5:
+        {
+            if (n == 0)
+            {
+                cout << "Agenda vazia.\n";
+                break;
+            }
+
+            string nomeRemover;
+            cout << "Digite o nome exato da pessoa a remover: ";
+            getline(cin >> ws, nomeRemover);
+
+            bool achou = false;
+            int i = 0;
+            while (i < n)
+            {
+                if (agenda[i].nome == nomeRemover)
+                {
+                    for (int j = i; j < n - 1; j++)
+                        agenda[j] = agenda[j + 1];
+                    n--;
+                    achou = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            if (!achou)
+                cout << "Pessoa nao encontrada.\n";
+            else
+                cout << "Pessoa removida(s) com sucesso!\n";
+            break;
+        }
+        case 6:
+        {
+            if (n == 0)
+            {
+                cout << "Agenda vazia.\n";
+                break;
+            }
+
+            cout << "Imprimir agenda:\n";
+            cout << "1) Nome, telefone e email\n";
+            cout << "2) Todos os dados\n";
+            cout << "Opcao: ";
+
+            int sub;
+            cin >> sub;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (sub == 1)
+                {
+                    imprimirCompacto(agenda[i]);
+                }
+                else if (sub == 2)
+                {
+                    imprimirCompleto(agenda[i]);
+                }
+                else
+                {
+                    cout << "Opcao invalida!\n";
+                    break;
+                }
+                cout << "-------------------------\n";
+            }
+            break;
+        }
+        default:
+            cout << "Opcao invalida!\n";
+            break;
+        }
+    }
+}
 
 void questao15() {}
-
 void questao16() {}
 
 int main()
@@ -422,20 +763,21 @@ void Cadastro07(Estudante &aluno)
 {
     cout << "\n\tCadastro do Aluno\n";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << "Nome do aluno: "; getline(cin >> ws, aluno.nome);
-    cout << "Matricula: "; cin >> aluno.matricula;
-    cout << "Nota da Primeira prova: "; cin >> aluno.n1;
-    cout << "Nota da Segunda prova: "; cin >> aluno.n2;
-    cout << "Nota da Terceira prova: "; cin >> aluno.n3;
-    aluno.media = (aluno.n1 + aluno.n2 + aluno.n3)/3;
+    cout << "Nome do aluno: ";
+    getline(cin >> ws, aluno.nome);
+    cout << "Matricula: ";
+    cin >> aluno.matricula;
+    cout << "Nota da Primeira prova: ";
+    cin >> aluno.n1;
+    cout << "Nota da Segunda prova: ";
+    cin >> aluno.n2;
+    cout << "Nota da Terceira prova: ";
+    cin >> aluno.n3;
+    aluno.media = (aluno.n1 + aluno.n2 + aluno.n3) / 3;
     if (aluno.media >= 6)
-    {
         aluno.situacao = "Aprovado";
-    }
     else
-    {
         aluno.situacao = "Reprovado";
-    }
 }
 int maiorNotaN1(Estudante aluno[5])
 {
@@ -487,37 +829,59 @@ int menorMediaGeral(Estudante aluno[5])
 }
 void somaVetores(Vetor vetores[3])
 {
-    vetores[2].x = (vetores[0].x + vetores[1].x);
-    vetores[2].y = (vetores[0].y + vetores[1].y);
-    vetores[2].z = (vetores[0].z + vetores[1].z);
+    vetores[2].x = vetores[0].x + vetores[1].x;
+    vetores[2].y = vetores[0].y + vetores[1].y;
+    vetores[2].z = vetores[0].z + vetores[1].z;
 }
 void Cadastro09(Universitario &turma)
 {
-    cout << "Matricula: "; cin >> turma.matricula;
-    cout << "Nome: "; cin >> turma.nome;
-    cout << "Codigo: "; cin >> turma.codigo;
-    cout << "Nota 1: "; cin >> turma.n1;
-    cout << "Nota 2: "; cin >> turma.n2;
+    cout << "Matricula: ";
+    cin >> turma.matricula;
+    cout << "Nome: ";
+    cin >> turma.nome;
+    cout << "Codigo: ";
+    cin >> turma.codigo;
+    cout << "Nota 1: ";
+    cin >> turma.n1;
+    cout << "Nota 2: ";
+    cin >> turma.n2;
 }
 void calculoMedia(Universitario &turma)
 {
-    turma.media = ((turma.n1 * 1) + (turma.n2 * 2))/3;
+    turma.media = (turma.n1 * 1 + turma.n2 * 2) / 3;
 }
 void Cadastro10(Dados &funcionario)
 {
-    cout << "Nome: "; 
+    cout << "Nome: ";
     getline(cin >> ws, funcionario.nome);
-    cout << "Idade: "; cin >> funcionario.idade;
-    cout << "Sexo (M/F): "; cin >> funcionario.sexo;
-    cout << "CPF (apenas numeros): "; cin >> funcionario.cpf;
-    cout << "Data de Nascimento (dd mm aa): "; cin >> funcionario.nascDia >> funcionario.nascMes >> funcionario.nascAno;
-    cout << "Codigo do Setor: "; cin >> funcionario.codigo;
+    cout << "Idade: ";
+    cin >> funcionario.idade;
+    cout << "Sexo (M/F): ";
+    cin >> funcionario.sexo;
+    cout << "CPF (apenas numeros): ";
+    cin >> funcionario.cpf;
+    cout << "Data de Nascimento (dd mm aa): ";
+    cin >> funcionario.nascDia >> funcionario.nascMes >> funcionario.nascAno;
+    cout << "Codigo do Setor: ";
+    cin >> funcionario.codigo;
 }
 void Cadastro11(Pessoas &p)
 {
-    cout << "Nome: "; getline(cin >> ws, p.nome);
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << "Endereco: "; getline(cin >> ws, p.endereco);
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << "Telefone (apenas numeros): "; cin >> p.telefone;
+    cout << "Nome: ";
+    getline(cin >> ws, p.nome);
+    cout << "Endereco: ";
+    getline(cin >> ws, p.endereco);
+    cout << "Telefone (apenas numeros): ";
+    cin >> p.telefone;
 }
+void Cadastro12(OsCaraQueEstuda &e)
+{
+    cout << "Nome: ";
+    getline(cin >> ws, e.nome);
+    cout << "Matricula: ";
+    cin >> e.matricula;
+    cout << "Media final: ";
+    cin >> e.mediaFinal;
+    e.situacao = (e.mediaFinal >= 5) ? 'a' : 'r';
+}
+
