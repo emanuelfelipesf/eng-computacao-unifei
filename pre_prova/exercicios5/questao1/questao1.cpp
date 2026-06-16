@@ -41,7 +41,7 @@ int main()
         {
             m_notas[i] += turma[j].notas[i];
         }
-        m_notas[i] = m_notas[i]/5;
+        m_notas[i] = m_notas[i]/4;
     }
     
     for (int i = 0; i < 4; i++)
