@@ -1,31 +1,34 @@
 #include <iostream>
 using namespace std;
 
-int main(int argc, char const *argv[])
+int main()
 {
     int n;
     cout << "Numero impar: ";
     cin >> n;
-    
-    for (int i = 0; i < (int)n/2 + 1; i++)
+
+    if (n % 2 == 0)
     {
-        for (int j = 0; j < n; j++)
+        cout << "Entrada invalida!";
+        return 0;
+    }
+
+    int meio = (int)n / 2 + 1, aux = 0;
+    for (int i = 1; i <= meio; i++)
+    {
+        for (int j = 0; j < aux; j++)
         {
-        if (j == i)
+            cout << " " << " ";
+        }
+        aux++;
+
+        for (int j = i; j <= n; j++)
         {
-            for (int k = 0; k < n; k++)
-            {
-                cout << k + 1 << " ";
-            }
+            cout << j << " ";
         }
-        else 
-        { 
-            cout << " ";
-        }
-        }
-        
+        n--;
         cout << endl;
     }
-    
+
     return 0;
 }
