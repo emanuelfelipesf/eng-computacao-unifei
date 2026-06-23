@@ -23,6 +23,7 @@ int main()
         }
     }
     cout << vetor[n-2];
+    delete[] vetor;
     
     return 0;
 }
