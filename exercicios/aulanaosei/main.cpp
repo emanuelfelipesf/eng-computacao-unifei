@@ -97,7 +97,7 @@ class Fila {
 
         void Unificar(Fila &F1,Fila &F2, Fila &F3)
         {
-            Paciente P1, P2;
+            Paciente P2, P3;
             while (!F2.Vazia() && !F3.Vazia())
             {
                 P2 = F2.ItemFrente();
@@ -113,6 +113,20 @@ class Fila {
                     F1.Enfileirar(P3);
                     F3.Desinfileirar();
                 }
+            }
+            while (!F2.Vazia())
+            {
+                P2 = F2.ItemFrente();
+
+                F1.Enfileirar(P2);
+                F2.Desinfileirar();
+            }
+            while (!F3.Vazia())
+            {
+                P3 = F3.ItemFrente();
+
+                F1.Enfileirar(P3);
+                F3.Desinfileirar();
             }
         }
 
