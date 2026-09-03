@@ -26,6 +26,16 @@ class Paciente {
         {
             return nome;
         }
+        void Ler()
+        {
+            cout << "Digite o ID: "; cin >> id;
+            cout << "Digite o NOME: "; cin >> nome;
+        }
+        void Imprimir()
+        {
+            cout << "Nome: " << nome;
+            cout << "\n\tID: " << id;
+        }
 };
 
 class Fila {
@@ -65,5 +75,14 @@ class Fila {
                 cout << "\n\tID: " << itens[i].id << endl;
             }
         }
-        
+        int Tamanho()
+        {
+            return quantidade;
+        }
+
+        ~Paciente()
+        {
+            delete [] itens;
+        }
 };
+
