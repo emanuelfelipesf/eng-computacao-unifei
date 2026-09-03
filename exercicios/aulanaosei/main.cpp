@@ -95,6 +95,27 @@ class Fila {
             return itens[inicio].id;
         }
 
+        void Unificar(Fila &F1,Fila &F2, Fila &F3)
+        {
+            Paciente P1, P2;
+            while (!F2.Vazia() && !F3.Vazia())
+            {
+                P2 = F2.ItemFrente();
+                P3 = F3.ItemFrente();
+
+                if (P2.getID() < P3.getID())
+                {
+                    F1.Enfileirar(P2);
+                    F2.Desinfileirar();
+                } 
+                else
+                {
+                    F1.Enfileirar(P3);
+                    F3.Desinfileirar();
+                }
+            }
+        }
+
         ~Fila()
         {
             delete [] itens;
