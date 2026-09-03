@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+const int MAXTAM = 100;
+
+class Paciente {
+    private:
+        int id;
+        string nome;
+    public:
+        Paciente(int id_p, string nome_p)
+        {
+            id = id_p;
+            nome = nome_p;
+        }
+        Paciente()
+        {
+            id = 0;
+            nome = " ";
+        }
+
+        int getID()
+        {
+            return id;
+        }
+        string getNOME()
+        {
+            return nome;
+        }
+};
+
+class Fila {
+    private:
+        int inicio, fim, quantidade;
+        Paciente *itens;
+    public:
+        Fila()
+        {
+            inicio = 0;
+            fim = 0;
+            quantidade = 0;
+            itens = new Paciente[MAXTAM];
+        }
+
+        void Criar()
+        {
+            inicio = 0;
+            fim = 0;
+            quantidade = 0;
+        }
+        void Enfileirar(Paciente x)
+        {
+            itens[fim + 1].id = x.id;
+            itens[fim + 1].nome = x.nome;
+            fim++;
+        }
+        void Desinfileirar()
+        {
+            inicio++;
+        }
+        void Imprimir()
+        {
+            for (int i = inicio; i != fim; (i + 1) % MAXTAM)
+            {
+                cout << "Nome: " << itens[i].nome;
+                cout << "\n\tID: " << itens[i].id << endl;
+            }
+        }
+        
+};
