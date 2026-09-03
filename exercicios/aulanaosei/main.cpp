@@ -46,7 +46,7 @@ class Fila {
         Fila()
         {
             inicio = 0;
-            fim = 0;
+            fim = 1;
             quantidade = 0;
             itens = new Paciente[MAXTAM];
         }
@@ -54,7 +54,7 @@ class Fila {
         void Criar()
         {
             inicio = 0;
-            fim = 0;
+            fim = 1;
             quantidade = 0;
         }
 bool Vazia()
@@ -63,8 +63,8 @@ return inicio == fim;
 }
         void Enfileirar(Paciente x)
         {
-            itens[fim].id = x.id;
-            itens[fim].nome = x.nome;
+            itens[fim-1].id = x.id;
+            itens[fim-1].nome = x.nome;
             fim++;
         }
         void Desinfileirar()
