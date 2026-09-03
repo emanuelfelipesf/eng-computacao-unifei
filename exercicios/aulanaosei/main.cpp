@@ -103,20 +103,20 @@ class Fila {
 
 int main()
 {
-        Fila Unimed;
-        Unimed.criar();
+    Fila Unimed;
+    Unimed.criar();
 
-        Paciente um(1, "Rafael"), dois(2, "Pedro"), tres(3, "Maria");
+    Paciente um(1, "Rafael"), dois(2, "Pedro"), tres(3, "Maria");
 
-        Unimed.Enfileirar(um);
-        Unimed.Enfileirar(dois);
-        Unimed.Enfileirar(tres);
+    Unimed.Enfileirar(um);
+    Unimed.Enfileirar(dois);
+    Unimed.Enfileirar(tres);
 
-        Unimed.Imprimir();
-        cout << "Primeiro da fila: " << Unimed.ItemFrente() << endl;
+    Unimed.Imprimir();
+    cout << "Primeiro da fila: " << Unimed.ItemFrente() << endl;
 
-        Unimed.Desinfileirar();
-        Unimed.Desinfileirar();
+    Unimed.Desinfileirar();
+    Unimed.Desinfileirar();
 
-        return 0;
+    return 0;
 }
