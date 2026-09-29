@@ -1,9 +1,10 @@
 template <class TipoItem>
 
-class No {
+class No{
   private:
     No *prox;
     TipoItem item;
+  
   public:
     No(){
       prox = NULL;
@@ -13,6 +14,17 @@ class No {
       prox = NULL;
     }
 
+    TipoItem getItem(){
+      return item;
+    }
     No* getProx(){
       return prox;
     }
+
+    void setItem(TipoItem x){
+      item = x;
+    }
+    void setProx(No *p){
+      prox = p;
+    }
+};
