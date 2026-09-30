@@ -1,28 +1,29 @@
 #include <iostream>
 using namespace std;
+template <class TipoItem>
 
 class No{
   private:
     No *prox;
-    int item;
+    TipoItem item;
   
   public:
     No(){
       prox = NULL;
     }
-    No(int x){
+    No(TipoItem x){
       item = x;
       prox = NULL;
     }
 
-    int getItem(){
+    TipoItem getItem(){
       return item;
     }
     No* getProx(){
       return prox;
     }
 
-    void setItem(int x){
+    void setItem(TipoItem x){
       item = x;
     }
     void setProx(No *p){
@@ -30,10 +31,11 @@ class No{
     }
 };
 
+template <class TipoItem>
 class Fila
 {
     private:
-        No *inicio, *fim;
+        No<TipoItem> *inicio, *fim;
         int quantidade;
     
     public:
@@ -55,10 +57,10 @@ class Fila
             return inicio == NULL;
         }
 
-        void Enfileirar(int x)
+        void Enfileirar(TipoItem x)
         {
-            No *p;
-            p = new No (x);
+            No<TipoItem> *p;
+            p = new No<TipoItem>(x);
 
             if (Vazia())
             {
@@ -78,7 +80,7 @@ class Fila
                 return;
             }
 
-            No *p;
+            No<TipoItem> *p;
 
             p = inicio;
             inicio = inicio->getProx();
@@ -93,7 +95,7 @@ class Fila
         }
         void Imprimir()
         {
-            No *p;
+            No<TipoItem> *p;
             p = inicio;
 
             if (Vazia())
@@ -109,9 +111,9 @@ class Fila
                 cout << endl;
             }
         }
-        void Prioridade(int x)
+        void Prioridade(TipoItem x)
         {
-            No *p, *ant;
+            No<TipoItem> *p, *ant;
             p = inicio;
 
             if (Vazia())
@@ -152,22 +154,27 @@ class Fila
             cout << "\nItem " << x << " foi colocado na primeira posicao!\n";
         }
 
-        int ItemFrente()
+        TipoItem ItemFrente()
         {
             return inicio->getItem();
+        }
+        int Tamanho()
+        {
+            return quantidade;
         }
 
         ~Fila()
         {
             while(inicio != NULL)
             {
-                No *p;
+                No<TipoItem> *p;
                 p = inicio;
                 inicio = p->getProx();
 
                 delete p;
             }
             fim = NULL;
+            cout << "Programa encerrado!\n";
         }
 };
 
@@ -177,13 +184,13 @@ int Menu()
     cout << "\n====\tMENU\t====\n";
     cout << "\t[1] Enfileirar Item\n\t[2] Desinfileirar Item\n\t[3] Imprimir\n\t[4] Retornar Item Frente\n\t[5] Prioridade\n\t[0] Sair\nOpcao: ";
     cin >> resp;
-
+    
     return resp;
 }
 
 int main()
 {
-    Fila A;
+    Fila<int> A;
     int resp;
 
     do {
@@ -222,14 +229,14 @@ int main()
                 break;
             
             case 5:
-                int o;
+                int prioritario;
                 cout << "Item a ter prioridade: ";
-                cin >> o;
-                A.Prioridade(o);
+                cin >> prioritario;
+                A.Prioridade(prioritario);
                 
                 break;
             default:
-                cout << "Encerrando!\n";
+                cout << "Entrada invalida!\n";
                 break;
         }
     } while (resp != 0);
