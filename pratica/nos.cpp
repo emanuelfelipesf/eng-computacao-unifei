@@ -1,6 +1,6 @@
 template <class TipoItem>
 
-class No{
+class No {
   private:
     No *prox;
     TipoItem item;
