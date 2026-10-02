@@ -70,6 +70,16 @@ class Pilha {
 
             cout << "\nItem " << x << " empilhado!\n";
         }
+        void Desempilhar()
+        {
+            No<TipoItem> *p;
+            p = topo;
+            
+            topo = topo->getProx();
+            
+            delete p;
+            cout << "\nItem desempilhado!\n";
+        }
         void Imprimir()
         {
             No<TipoItem> *p;
@@ -88,20 +98,14 @@ class Pilha {
             }
             cout << endl;
         }
-        void Desempilhar()
-        {
-            No<TipoItem> *p;
-            p = topo;
-
-            topo = topo->getProx();
-
-            delete p;
-            cout << "\nItem desempilhado!\n";
-        }
 
         TipoItem itemTopo()
         {
             return topo->getItem();
+        }
+        int Tamanho()
+        {
+            return quantidade;
         }
 
         ~Pilha()
